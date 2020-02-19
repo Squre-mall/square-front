@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import squareIcon from "./square-icon.png";
 
 const useStyles = makeStyles({
   header: {
@@ -23,6 +23,11 @@ const useStyles = makeStyles({
   },
   buttonBox: {
     padding: 30
+  },
+  img: {
+    width: 200,
+    height: 120,
+    paddingLeft: 80
   }
 });
 
@@ -31,9 +36,9 @@ const Header = () => {
   return (
     <div className={classes.header}>
       <Box className={classes.titleBox}>
-        <Typography className={classes.title} variant="h3">
-          Squre
-        </Typography>
+        <a href="/">
+          <img src={squareIcon} alt="squareIcon" className={classes.img} />
+        </a>
       </Box>
       <Box className={classes.buttonBox}>
         <Button variant="contained" color="primary" disableElevation>
