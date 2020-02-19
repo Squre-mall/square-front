@@ -1,4 +1,4 @@
-# Sqaure-front
+# Square-front
 
 ![square-icon](./image/square-icon.png)
 
