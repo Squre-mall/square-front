@@ -8,7 +8,6 @@ const useStyles = makeStyles({
     width: 80,
     padding: 100,
     position: "absolute"
-    // backgroundColor: "#D8D8D8"
   },
   titleMenu: {
     fontSize: 20
