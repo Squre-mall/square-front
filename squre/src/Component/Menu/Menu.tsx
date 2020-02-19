@@ -1,36 +1,40 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
-  root: {
-    flexGrow: 1
+  menu: {
+    height: "100%",
+    width: 80,
+    padding: 100,
+    position: "absolute"
+  },
+  titleMenu: {
+    fontSize: 20
   }
 });
 
 const Menu = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
   return (
-    <Paper className={classes.root}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab label="menu 1" />
-        <Tab label="menu 2" />
-        <Tab label="menu 3" />
-      </Tabs>
-    </Paper>
+    <div className={classes.menu}>
+      <a href="/">
+        <Typography className={classes.titleMenu} variant="h3">
+          Squre
+        </Typography>
+      </a>
+      <a href="/">
+        <Typography className={classes.titleMenu} variant="h3">
+          Squre
+        </Typography>
+      </a>
+      <a href="/">
+        <Typography className={classes.titleMenu} variant="h3">
+          Squre
+        </Typography>
+      </a>
+    </div>
   );
 };
 
