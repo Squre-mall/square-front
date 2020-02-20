@@ -9,25 +9,29 @@ type ClothsType = {
   detail: string;
   date: string;
   clothsImg: any;
+  price: number;
 };
 
 const useStyles = makeStyles({
   item: {
-    padding: 30
+    padding: 20
   },
   paper: {
     width: 400,
-    height: 300
+    height: 330
   },
   clothsImgBox: {
     height: 200,
-    width: "100%"
+    width: "100%",
+    textAlign: "center"
   },
   clothsImg: {
-    height: 200,
-    width: 400
+    height: 200
   },
-  header: {
+  body: {
+    padding: 10
+  },
+  bodyHeader: {
     padding: 10,
     display: "flex"
   },
@@ -44,23 +48,39 @@ const useStyles = makeStyles({
   detail: {
     fontSize: 15,
     padding: 10
+  },
+  price: {
+    fontSize: 13,
+    padding: 10
   }
 });
 
-const ClothsItem: FC<ClothsType> = ({ id, title, detail, date, clothsImg }) => {
+const ClothsItem: FC<ClothsType> = ({
+  id,
+  title,
+  detail,
+  date,
+  clothsImg,
+  price
+}) => {
   const classes = useStyles();
   return (
     <div className="cloths-item">
       <Box className={classes.item}>
         <Paper square={false} elevation={2} className={classes.paper}>
-          <Box className={classes.clothsImgBox}>
-            <img alt="cloths" src={clothsImg} className={classes.clothsImg} />
+          <Box>
+            <Box className={classes.clothsImgBox}>
+              <img alt="cloths" src={clothsImg} className={classes.clothsImg} />
+            </Box>
           </Box>
-          <Box className={classes.header}>
-            <Box className={classes.title}>{title}</Box>
-            <Box className={classes.date}> {date} </Box>
+          <Box className={classes.body}>
+            <Box className={classes.bodyHeader}>
+              <Box className={classes.title}>{title}</Box>
+              <Box className={classes.date}> {date} </Box>
+            </Box>
+            <Box className={classes.detail}>{detail}</Box>
+            <Box className={classes.price}>{price} 원</Box>
           </Box>
-          <Box className={classes.detail}>{detail}</Box>
         </Paper>
       </Box>
     </div>

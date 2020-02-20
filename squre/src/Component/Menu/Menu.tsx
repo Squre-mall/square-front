@@ -7,10 +7,15 @@ const useStyles = makeStyles({
     height: "100%",
     width: 80,
     padding: 100,
-    position: "absolute"
+    position: "relative",
+    flex: 1
+  },
+  menuItem: {
+    textDecoration: "none"
   },
   titleMenu: {
-    fontSize: 20
+    fontSize: 20,
+    padding: 30
   }
 });
 
@@ -19,19 +24,19 @@ const Menu = () => {
 
   return (
     <div className={classes.menu}>
-      <a href="/">
+      <a href="/" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
-          Squre
+          Outer
         </Typography>
       </a>
-      <a href="/">
+      <a href="/" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
-          Squre
+          Top
         </Typography>
       </a>
-      <a href="/">
+      <a href="/" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
-          Squre
+          Bottom
         </Typography>
       </a>
     </div>

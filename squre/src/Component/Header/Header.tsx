@@ -26,7 +26,6 @@ const useStyles = makeStyles({
   },
   img: {
     width: 200,
-    height: 120,
     paddingLeft: 80
   }
 });

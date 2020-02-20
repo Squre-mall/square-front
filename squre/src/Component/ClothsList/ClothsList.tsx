@@ -13,6 +13,7 @@ type ClothsType = {
   detail: string;
   date: string;
   clothsImg: any;
+  price: number;
 };
 
 let id = 0;
@@ -23,28 +24,32 @@ const clothsInfo = [
     title: "outer-1",
     detail: "test" + id,
     date: "2020-02-18",
-    clothsImg: outer_1
+    clothsImg: outer_1,
+    price: 150000
   },
   {
     id: id++,
     title: "outer-2",
     detail: "test" + id,
     date: "2020-02-18",
-    clothsImg: outer_2
+    clothsImg: outer_2,
+    price: 230000
   },
   {
     id: id++,
     title: "top-1",
     detail: "test" + id,
     date: "2020-02-18",
-    clothsImg: top_1
+    clothsImg: top_1,
+    price: 78000
   },
   {
     id: id++,
     title: "bottom-1",
     detail: "test" + id,
     date: "2020-02-18",
-    clothsImg: bottom_1
+    clothsImg: bottom_1,
+    price: 67000
   }
 ];
 
@@ -52,12 +57,12 @@ const useStyles = makeStyles({
   itemBox: {
     display: "flex",
     flexWrap: "wrap",
-    width: 1000
+    width: "100%"
   }
 });
 
 const clothsListInfo = clothsInfo.map(
-  ({ id, title, detail, date, clothsImg }: ClothsType) => (
+  ({ id, title, detail, date, clothsImg, price }: ClothsType) => (
     <ClothsItem
       key={id}
       id={id}
@@ -65,6 +70,7 @@ const clothsListInfo = clothsInfo.map(
       detail={detail}
       date={date}
       clothsImg={clothsImg}
+      price={price}
     />
   )
 );

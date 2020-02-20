@@ -1,20 +1,24 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import ClothsList from "../ClothsList";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   contents: {
-    paddingLeft: 500
+    flex: 9
+  },
+  title: {
+    padding: 30
   }
 });
 
 const Contents = () => {
   const classes = useStyles();
-
   return (
     <div className={classes.contents}>
-      <Typography variant="h3"> 전체 목록 </Typography>
+      <Typography variant="h4" className={classes.title}>
+        ALL
+      </Typography>
       <ClothsList />
     </div>
   );
