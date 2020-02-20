@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     height: "100%",
     width: 80,
     padding: 100,
-    position: "relative",
+    position: "fixed",
     flex: 1
   },
   menuItem: {

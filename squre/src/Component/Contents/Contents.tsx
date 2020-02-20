@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   contents: {
-    flex: 9
+    flex: 9,
+    marginLeft: 350
   },
   title: {
     padding: 30
