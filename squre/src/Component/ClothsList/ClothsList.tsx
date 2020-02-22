@@ -7,6 +7,7 @@ import outer_2 from "./itemImg/outer-2.jpg";
 import top_1 from "./itemImg/top-1.jpg";
 import bottom_1 from "./itemImg/bottom-1.jpg";
 import top_2 from "./itemImg/top-2.jpg";
+import { Route, Switch } from "react-router-dom";
 
 type ClothsType = {
   id: number;
@@ -24,7 +25,7 @@ const numberFormat = (price: number) => {
 
 const clothsInfo = [
   {
-    id:1,
+    id: 1,
     brand: "LMOOD",
     title: "미니멀 트러커 자켓 Beige",
     date: "2020-02-14",
@@ -78,8 +79,9 @@ const useStyles = makeStyles({
   }
 });
 
-const clothsListInfo = clothsInfo.reverse().map(
-  ({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
+const clothsListInfoAll = clothsInfo
+  .reverse()
+  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
     <ClothsItem
       key={id}
       title={title}
@@ -89,15 +91,81 @@ const clothsListInfo = clothsInfo.reverse().map(
       price={price}
       category={category}
     />
-  )
-);
+  ));
+
+const clothsListInfoOuter = clothsInfo
+  .filter(clothsInfo => clothsInfo.category === 1)
+  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
+    <ClothsItem
+      key={id}
+      title={title}
+      brand={brand}
+      date={date}
+      clothsImg={clothsImg}
+      price={price}
+      category={category}
+    />
+  ));
+
+const clothsListInfoTop = clothsInfo
+  .filter(clothsInfo => clothsInfo.category === 2)
+  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
+    <ClothsItem
+      key={id}
+      title={title}
+      brand={brand}
+      date={date}
+      clothsImg={clothsImg}
+      price={price}
+      category={category}
+    />
+  ));
+
+const clothsListInfoBottom = clothsInfo
+  .filter(clothsInfo => clothsInfo.category === 3)
+  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
+    <ClothsItem
+      key={id}
+      title={title}
+      brand={brand}
+      date={date}
+      clothsImg={clothsImg}
+      price={price}
+      category={category}
+    />
+  ));
 
 const ClothsList = () => {
   const classes = useStyles();
   return (
-    <div className="cloths-list">
-      <Box className={classes.itemBox}>{clothsListInfo}</Box>
-    </div>
+    <Switch>
+      <div className="cloths-list">
+        <Route
+          path="/All"
+          render={() => (
+            <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
+          )}
+        />
+        <Route
+          path="/Outer"
+          render={() => (
+            <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
+          )}
+        />
+        <Route
+          path="/Top"
+          render={() => (
+            <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
+          )}
+        />
+        <Route
+          path="/Bottom"
+          render={() => (
+            <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
+          )}
+        />
+      </div>
+    </Switch>
   );
 };
 
