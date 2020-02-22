@@ -29,6 +29,11 @@ const useStyles = makeStyles({
   },
   iconMenu:{
     fontSize: 20,
+  },
+  footer:{
+    padding : "10px 10px",
+    fontSize:15,
+    lineHeight : "20px"
   }
 });
 
@@ -74,6 +79,10 @@ const Menu = () => {
           </Typography>
         </Box>
       </Link>
+      <hr />
+      <div className = {classes.footer}>
+        <div> Made by Lee Hosu </div>
+      </div>
     </div>
   );
 };
