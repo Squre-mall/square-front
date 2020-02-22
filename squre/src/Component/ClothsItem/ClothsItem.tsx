@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     display: "flex"
   },
   brand: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
     flex: 1
   },
