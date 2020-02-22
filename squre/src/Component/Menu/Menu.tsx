@@ -25,7 +25,7 @@ const Menu = () => {
 
   return (
     <div className={classes.menu}>
-      <Link to="/All" className={classes.menuItem}>
+      <Link to="/" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
           All
         </Typography>

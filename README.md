@@ -2,22 +2,23 @@
 
 ![square-icon](./image/square-icon.png)
 
-## Front - end Stack
+### Front - end Stack
 
 - [x] Typescript
 - [x] React.JS
 - [x] Redux.JS
 
-## Design
+### Design
 
 - [x] Material-ui
 
-## Progress
+### How to use
 
-##### 2020-02-21
-![200221](./image/200221.png)
+- `yarn install`
+- `yarn start`
 
-##### 2020-02-19
+### Progress
 
-![200219-1](./image/200219-1.png)
+##### 200222
 
+![200222](./image/square-200222.gif)

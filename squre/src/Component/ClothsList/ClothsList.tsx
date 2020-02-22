@@ -8,6 +8,7 @@ import top_1 from "./itemImg/top-1.jpg";
 import bottom_1 from "./itemImg/bottom-1.jpg";
 import top_2 from "./itemImg/top-2.jpg";
 import { Route, Switch } from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
 
 type ClothsType = {
   id: number;
@@ -76,6 +77,9 @@ const useStyles = makeStyles({
     display: "flex",
     flexWrap: "wrap",
     width: "100%"
+  },
+  title: {
+    padding: 30
   }
 });
 
@@ -141,27 +145,48 @@ const ClothsList = () => {
     <Switch>
       <div className="cloths-list">
         <Route
-          path="/All"
+          exact
+          path="/"
           render={() => (
-            <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
+            <div>
+              <Typography variant="h4" className={classes.title}>
+                ALL
+              </Typography>
+              <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
+            </div>
           )}
         />
         <Route
           path="/Outer"
           render={() => (
-            <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
+            <div>
+              <Typography variant="h4" className={classes.title}>
+                Outer
+              </Typography>
+              <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
+            </div>
           )}
         />
         <Route
           path="/Top"
           render={() => (
-            <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
+            <div>
+              <Typography variant="h4" className={classes.title}>
+                Top
+              </Typography>
+              <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
+            </div>
           )}
         />
         <Route
           path="/Bottom"
           render={() => (
-            <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
+            <div>
+              <Typography variant="h4" className={classes.title}>
+                Bottom
+              </Typography>
+              <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
+            </div>
           )}
         />
       </div>
