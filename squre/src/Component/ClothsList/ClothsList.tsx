@@ -105,8 +105,7 @@ const useStyles = makeStyles({
     padding: "10px 10px 30px 20px"
   },
   listCount: {
-    paddingTop: "1.7em",
-    color: "#D8D8D8"
+    paddingTop: "1.7em"
   }
 });
 
@@ -185,7 +184,7 @@ const ClothsList = () => {
                   All
                 </Typography>
                 <Box className={classes.listCount}>
-                  ({clothsListInfoAll.length})
+                  ( {clothsListInfoAll.length} )
                 </Box>
               </Box>
               <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
@@ -201,7 +200,7 @@ const ClothsList = () => {
                   Outer
                 </Typography>
                 <Box className={classes.listCount}>
-                  ({clothsListInfoOuter.length})
+                  ( {clothsListInfoOuter.length} )
                 </Box>
               </Box>
               <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
@@ -217,7 +216,7 @@ const ClothsList = () => {
                   Top
                 </Typography>
                 <Box className={classes.listCount}>
-                  ({clothsListInfoTop.length})
+                  ( {clothsListInfoTop.length} )
                 </Box>
               </Box>
               <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
@@ -233,7 +232,7 @@ const ClothsList = () => {
                   Bottom
                 </Typography>
                 <Box className={classes.listCount}>
-                  ({clothsListInfoBottom.length})
+                  ( {clothsListInfoBottom.length} )
                 </Box>
               </Box>
               <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
