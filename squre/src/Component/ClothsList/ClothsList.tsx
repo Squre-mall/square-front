@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ClothsItem from "../ClothsItem";
 import outer_1 from "./itemImg/outer-1.png";
@@ -8,7 +9,6 @@ import top_1 from "./itemImg/top-1.jpg";
 import bottom_1 from "./itemImg/bottom-1.jpg";
 import top_2 from "./itemImg/top-2.jpg";
 import bottom_2 from "./itemImg/bottom-2.jpg";
-import Typography from "@material-ui/core/Typography";
 import { Route, Switch } from "react-router-dom";
 
 type ClothsType = {
@@ -92,7 +92,7 @@ const useStyles = makeStyles({
     display: "flex"
   },
   title: {
-    padding: "30px 30px 30px 20px"
+    padding: "30px 10px 30px 20px"
   },
   listCount: {
     paddingTop: "3em",
