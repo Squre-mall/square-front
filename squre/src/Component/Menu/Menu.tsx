@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     width: 200,
   },
   titleBox: {
+    paddingTop : 20
   },
   menuBox:{
     width: 100,
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
   },
   menu: {
     height: "100%",
-    paddingLeft: "5em",
+    paddingLeft: "6em",
     position: "fixed",
     flex: 1,
     top : "5em"

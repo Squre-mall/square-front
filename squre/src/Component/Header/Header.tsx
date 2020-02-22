@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: 100,
     display: "flex",
-    padding: "5em 0 2em"
+    padding: "6em 0 2em"
   },
   buttonBox:{
     display : "flex",
