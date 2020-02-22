@@ -10,6 +10,7 @@ type ClothsType = {
   clothsImg: any;
   price: string;
   category: number;
+  id: number;
 };
 
 type categoryInfo = {
@@ -17,7 +18,7 @@ type categoryInfo = {
   categoryName: string;
 };
 
-const categoryList:categoryInfo[] = [
+const categoryList: categoryInfo[] = [
   {
     categoryNum: 1,
     categoryName: "outer"
@@ -85,14 +86,16 @@ const useStyles = makeStyles({
 });
 
 const ClothsItem = ({
+  id,
   brand,
   title,
   date,
   clothsImg,
   price,
   category
-}:ClothsType) => {
+}: ClothsType) => {
   const classes = useStyles();
+  console.log({ id });
   return (
     <div className="cloths-item">
       <Box className={classes.item}>
@@ -105,11 +108,13 @@ const ClothsItem = ({
           <Box className={classes.body}>
             <Box className={classes.bodyHeader}>
               <Box className={classes.brand}>{brand}</Box>
-              {categoryList.map(({ categoryNum, categoryName }: categoryInfo) => (
-                <Box className={classes.category}>
-                  {categoryNum === category ? categoryName : ""}
-                </Box>
-              ))}
+              {categoryList.map(
+                ({ categoryNum, categoryName }: categoryInfo) => (
+                  <Box className={classes.category} key={categoryNum}>
+                    {categoryNum === category ? categoryName : ""}
+                  </Box>
+                )
+              )}
             </Box>
             <Box className={classes.title}>{title}</Box>
             <Box className={classes.infoBox}>
