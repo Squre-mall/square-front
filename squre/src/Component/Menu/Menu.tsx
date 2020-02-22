@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   menu: {
@@ -24,21 +25,26 @@ const Menu = () => {
 
   return (
     <div className={classes.menu}>
-      <a href="/" className={classes.menuItem}>
+      <Link to="/All" className={classes.menuItem}>
+        <Typography className={classes.titleMenu} variant="h3">
+          All
+        </Typography>
+      </Link>
+      <Link to="/Outer" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
           Outer
         </Typography>
-      </a>
-      <a href="/" className={classes.menuItem}>
+      </Link>
+      <Link to="/Top" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
           Top
         </Typography>
-      </a>
-      <a href="/" className={classes.menuItem}>
+      </Link>
+      <Link to="/bottom" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
           Bottom
         </Typography>
-      </a>
+      </Link>
     </div>
   );
 };
