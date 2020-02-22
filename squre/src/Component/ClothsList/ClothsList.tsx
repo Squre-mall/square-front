@@ -102,10 +102,10 @@ const useStyles = makeStyles({
     display: "flex"
   },
   title: {
-    padding: "30px 10px 30px 20px"
+    padding: "10px 10px 30px 20px"
   },
   listCount: {
-    paddingTop: "3em",
+    paddingTop: "1.7em",
     color: "#D8D8D8"
   }
 });

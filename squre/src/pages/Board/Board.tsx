@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     display: "flex"
   },
   title: {
-    padding: 30
+    padding: "10px 10px 30px 20px"
   },
 });
 

@@ -5,15 +5,33 @@ import { Link } from "react-router-dom";
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import Box from "@material-ui/core/Box";
+import squareIcon from "./square-icon.png";
 
 
 const useStyles = makeStyles({
+  img: {
+    width: 200,
+  },
+  titleBox: {
+  },
+  menuBox:{
+    width: 100,
+    padding : 50
+  },
+  title: {
+    padding: 30,
+    fontSize: 30,
+    fontFamily: "Raleway",
+    fontStyle: "normal",
+    fontDisplay: "swap",
+    fontWeight: 400
+  },
   menu: {
     height: "100%",
-    width: "10em",
-    padding: "2em 100px",
+    paddingLeft: "5em",
     position: "fixed",
-    flex: 1
+    flex: 1,
+    top : "5em"
   },
   menuItem: {
     textDecoration: "none",
@@ -28,7 +46,8 @@ const useStyles = makeStyles({
     padding : "10px 10px"
   },
   iconMenu:{
-    fontSize: 20,
+    fontSize: 15,
+    fontWeight: "bold"
   },
   footer:{
     padding : "10px 10px",
@@ -42,6 +61,12 @@ const Menu = () => {
 
   return (
     <div className={classes.menu}>
+       <Box className={classes.titleBox}>
+        <Link to="/">
+          <img src={squareIcon} alt="squareIcon" className={classes.img} />
+        </Link>
+      </Box>
+      <Box className= {classes.menuBox}>
       <Link to="/" className={classes.menuItem}>
         <Typography className={classes.titleMenu} variant="h3">
           All
@@ -65,7 +90,7 @@ const Menu = () => {
       <hr />
       <Link to="/notice" className={classes.menuItem}>
         <Box className = {classes.listItem}>
-          <ErrorOutlineIcon style = {{fontSize : 20, padding: 1}} />
+          <ErrorOutlineIcon style = {{fontSize : 15, padding: 1}} />
           <Typography className={classes.iconMenu} variant="h3">
             Notice
           </Typography>
@@ -73,7 +98,7 @@ const Menu = () => {
       </Link>
       <Link to="/Board" className={classes.menuItem}>
         <Box className = {classes.listItem}>
-          <ContactSupportIcon style = {{fontSize : 20, padding: 1}} />
+          <ContactSupportIcon style = {{fontSize : 15, padding: 1}} />
           <Typography className={classes.iconMenu} variant="h3">
             Q&A
           </Typography>
@@ -83,6 +108,7 @@ const Menu = () => {
       <div className = {classes.footer}>
         <div> Made by Lee Hosu </div>
       </div>
+      </Box>
     </div>
   );
 };

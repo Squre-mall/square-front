@@ -2,8 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import squareIcon from "./square-icon.png";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   header: {
@@ -12,41 +10,32 @@ const useStyles = makeStyles({
     display: "flex",
     padding: "5em 0 2em"
   },
-  titleBox: {
-    flex: 1
+  buttonBox:{
+    display : "flex",
+    paddingRight:"11em"
   },
-  title: {
-    padding: 30,
-    fontSize: 30,
-    fontFamily: "Raleway",
-    fontStyle: "normal",
-    fontDisplay: "swap",
-    fontWeight: 400
+  button: {
+    padding: "30px 0.5em"
   },
-  buttonBox: {
-    padding: "30px 10em"
-  },
-  img: {
-    width: 200,
-    paddingLeft: 80,
-    paddingTop: 10
-  }
 });
 
 const Header = () => {
   const classes = useStyles();
   return (
     <div className={classes.header}>
-      <Box className={classes.titleBox}>
-        <Link to="/">
-          <img src={squareIcon} alt="squareIcon" className={classes.img} />
-        </Link>
-      </Box>
-      <Box className={classes.buttonBox}>
-        <Button variant="outlined" size="medium" disableElevation>
-          Log In
-        </Button>
-      </Box>
+        <Box style={{flex : 1}}/>
+        <Box style={{paddingRight : "11em", display:"flex"}}>
+          <Box className={classes.button}>
+            <Button variant="outlined" size="medium" disableElevation>
+              LOG IN
+            </Button>
+          </Box>
+          <Box className={classes.button}>
+            <Button variant="outlined" size="medium" disableElevation>
+              JOIN US
+            </Button>
+          </Box>
+        </Box>
     </div>
   );
 };

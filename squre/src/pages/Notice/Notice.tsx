@@ -7,8 +7,8 @@ const useStyles = makeStyles({
   titleBox: {
     display: "flex"
   },
-  title: {
-    padding: 30
+  title: {    
+    padding: "10px 10px 30px 20px"
   },
 });
 
