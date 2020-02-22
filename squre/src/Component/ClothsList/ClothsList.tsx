@@ -9,6 +9,7 @@ import top_1 from "./itemImg/top-1.jpg";
 import bottom_1 from "./itemImg/bottom-1.jpg";
 import top_2 from "./itemImg/top-2.jpg";
 import bottom_2 from "./itemImg/bottom-2.jpg";
+import top_3 from "./itemImg/top-3.jpg";
 import { Route, Switch } from "react-router-dom";
 
 type ClothsType = {
@@ -79,6 +80,15 @@ const clothsInfo = [
     clothsImg: bottom_2,
     price: numberFormat(99000),
     category: 3
+  },
+  {
+    id: 6,
+    brand: "NOMANUAL",
+    title: " R.D LONG SLEEVE TEE - BLACK",
+    date: "2020-02-22",
+    clothsImg: top_3,
+    price: numberFormat(49000),
+    category: 2
   }
 ];
 
