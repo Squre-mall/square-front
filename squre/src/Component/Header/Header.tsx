@@ -43,7 +43,7 @@ const Header = () => {
         </Link>
       </Box>
       <Box className={classes.buttonBox}>
-        <Button variant="outlined" size="medium"color="primary" disableElevation>
+        <Button variant="outlined" size="medium" disableElevation>
           Log In
         </Button>
       </Box>
