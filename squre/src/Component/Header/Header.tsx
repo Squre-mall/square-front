@@ -9,7 +9,8 @@ const useStyles = makeStyles({
   header: {
     width: "100%",
     height: 100,
-    display: "flex"
+    display: "flex",
+    padding: "2em 0 2em"
   },
   titleBox: {
     flex: 1
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
     fontWeight: 400
   },
   buttonBox: {
-    padding: 30
+    padding: "30px 10em"
   },
   img: {
     width: 200,

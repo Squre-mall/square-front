@@ -79,7 +79,7 @@ const useStyles = makeStyles({
     width: "100%"
   },
   title: {
-    padding: 30
+    padding: "30px 30px 30px 20px"
   }
 });
 
