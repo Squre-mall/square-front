@@ -26,7 +26,7 @@ const numberFormat = (price: number) => {
 
 const clothsInfo = [
   {
-    id: 1,
+    id: 0,
     brand: "LMOOD",
     title: "미니멀 트러커 자켓 Beige",
     date: "2020-02-14",
@@ -35,7 +35,7 @@ const clothsInfo = [
     category: 1
   },
   {
-    id: 2,
+    id: 1,
     brand: "LARROM.",
     title: "Base jaket",
     date: "2020-02-15",
@@ -44,7 +44,7 @@ const clothsInfo = [
     category: 1
   },
   {
-    id: 3,
+    id: 2,
     brand: "SUPREME",
     title: "Supreme Box Logo T-shirts",
     date: "2020-02-15",
@@ -53,7 +53,7 @@ const clothsInfo = [
     category: 2
   },
   {
-    id: 4,
+    id: 3,
     brand: "GOOCCI",
     title: "Logo training pants",
     date: "2020-02-17",
@@ -62,7 +62,7 @@ const clothsInfo = [
     category: 3
   },
   {
-    id: 5,
+    id: 4,
     brand: "KANGOL",
     title: "Club L/S T-shirt 3505 BLACK",
     date: "2020-02-20",
@@ -87,6 +87,7 @@ const clothsListInfoAll = clothsInfo
   .reverse()
   .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
     <ClothsItem
+      id={id}
       key={id}
       title={title}
       brand={brand}
@@ -101,6 +102,7 @@ const clothsListInfoOuter = clothsInfo
   .filter(clothsInfo => clothsInfo.category === 1)
   .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
     <ClothsItem
+      id={id}
       key={id}
       title={title}
       brand={brand}
@@ -115,6 +117,7 @@ const clothsListInfoTop = clothsInfo
   .filter(clothsInfo => clothsInfo.category === 2)
   .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
     <ClothsItem
+      id={id}
       key={id}
       title={title}
       brand={brand}
@@ -129,6 +132,7 @@ const clothsListInfoBottom = clothsInfo
   .filter(clothsInfo => clothsInfo.category === 3)
   .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
     <ClothsItem
+      id={id}
       key={id}
       title={title}
       brand={brand}
@@ -142,8 +146,8 @@ const clothsListInfoBottom = clothsInfo
 const ClothsList = () => {
   const classes = useStyles();
   return (
-    <Switch>
-      <div className="cloths-list">
+    <div className="cloths-list">
+      <Switch>
         <Route
           exact
           path="/"
@@ -189,8 +193,8 @@ const ClothsList = () => {
             </div>
           )}
         />
-      </div>
-    </Switch>
+      </Switch>
+    </div>
   );
 };
 
