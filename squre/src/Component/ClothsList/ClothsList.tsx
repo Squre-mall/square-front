@@ -7,8 +7,9 @@ import outer_2 from "./itemImg/outer-2.jpg";
 import top_1 from "./itemImg/top-1.jpg";
 import bottom_1 from "./itemImg/bottom-1.jpg";
 import top_2 from "./itemImg/top-2.jpg";
-import { Route, Switch } from "react-router-dom";
+import bottom_2 from "./itemImg/bottom-2.jpg";
 import Typography from "@material-ui/core/Typography";
+import { Route, Switch } from "react-router-dom";
 
 type ClothsType = {
   id: number;
@@ -69,6 +70,15 @@ const clothsInfo = [
     clothsImg: top_2,
     price: numberFormat(65000),
     category: 2
+  },
+  {
+    id: 5,
+    brand: "GUESS",
+    title: "여성 M톤 틴 인디고 슈퍼스키니 청바지 데님 YG1D9053",
+    date: "2020-02-21",
+    clothsImg: bottom_2,
+    price: numberFormat(99000),
+    category: 3
   }
 ];
 
@@ -78,8 +88,15 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     width: "100%"
   },
+  titleBox: {
+    display: "flex"
+  },
   title: {
     padding: "30px 30px 30px 20px"
+  },
+  listCount: {
+    paddingTop: "3em",
+    color: "#D8D8D8"
   }
 });
 
@@ -153,9 +170,14 @@ const ClothsList = () => {
           path="/"
           render={() => (
             <div>
-              <Typography variant="h4" className={classes.title}>
-                ALL
-              </Typography>
+              <Box className={classes.titleBox}>
+                <Typography variant="h4" className={classes.title}>
+                  All
+                </Typography>
+                <Box className={classes.listCount}>
+                  ({clothsListInfoAll.length})
+                </Box>
+              </Box>
               <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
             </div>
           )}
@@ -164,9 +186,14 @@ const ClothsList = () => {
           path="/Outer"
           render={() => (
             <div>
-              <Typography variant="h4" className={classes.title}>
-                Outer
-              </Typography>
+              <Box className={classes.titleBox}>
+                <Typography variant="h4" className={classes.title}>
+                  Outer
+                </Typography>
+                <Box className={classes.listCount}>
+                  ({clothsListInfoOuter.length})
+                </Box>
+              </Box>
               <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
             </div>
           )}
@@ -175,9 +202,14 @@ const ClothsList = () => {
           path="/Top"
           render={() => (
             <div>
-              <Typography variant="h4" className={classes.title}>
-                Top
-              </Typography>
+              <Box className={classes.titleBox}>
+                <Typography variant="h4" className={classes.title}>
+                  Top
+                </Typography>
+                <Box className={classes.listCount}>
+                  ({clothsListInfoTop.length})
+                </Box>
+              </Box>
               <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
             </div>
           )}
@@ -186,9 +218,14 @@ const ClothsList = () => {
           path="/Bottom"
           render={() => (
             <div>
-              <Typography variant="h4" className={classes.title}>
-                Bottom
-              </Typography>
+              <Box className={classes.titleBox}>
+                <Typography variant="h4" className={classes.title}>
+                  Bottom
+                </Typography>
+                <Box className={classes.listCount}>
+                  ({clothsListInfoBottom.length})
+                </Box>
+              </Box>
               <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
             </div>
           )}
