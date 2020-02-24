@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/square/static/css/main.69eda509.chunk.css",
+    "main.js": "/square/static/js/main.b0112cf9.chunk.js",
+    "main.js.map": "/square/static/js/main.b0112cf9.chunk.js.map",
+    "runtime-main.js": "/square/static/js/runtime-main.a2146862.js",
+    "runtime-main.js.map": "/square/static/js/runtime-main.a2146862.js.map",
+    "static/js/2.9209d6f2.chunk.js": "/square/static/js/2.9209d6f2.chunk.js",
+    "static/js/2.9209d6f2.chunk.js.map": "/square/static/js/2.9209d6f2.chunk.js.map",
+    "index.html": "/square/index.html",
+    "precache-manifest.d8df9f0f12a87672bcd7b3cf6a3908e4.js": "/square/precache-manifest.d8df9f0f12a87672bcd7b3cf6a3908e4.js",
+    "service-worker.js": "/square/service-worker.js",
+    "static/css/main.69eda509.chunk.css.map": "/square/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.9209d6f2.chunk.js.LICENSE.txt": "/square/static/js/2.9209d6f2.chunk.js.LICENSE.txt",
+    "static/media/bottom-1.jpg": "/square/static/media/bottom-1.af4761c9.jpg",
+    "static/media/bottom-2.jpg": "/square/static/media/bottom-2.2a1da94d.jpg",
+    "static/media/outer-1.png": "/square/static/media/outer-1.f9fc5775.png",
+    "static/media/square-icon.png": "/square/static/media/square-icon.f3fdc687.png",
+    "static/media/top-1.jpg": "/square/static/media/top-1.3f050ead.jpg",
+    "static/media/top-3.jpg": "/square/static/media/top-3.34145c5a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2146862.js",
+    "static/js/2.9209d6f2.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.b0112cf9.chunk.js"
+  ]
+}
