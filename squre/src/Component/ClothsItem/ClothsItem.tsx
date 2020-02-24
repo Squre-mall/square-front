@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     padding: 20
   },
   paper: {
-    width: 350,
+    width: 330,
     height: 330
   },
   clothsImgBox: {
