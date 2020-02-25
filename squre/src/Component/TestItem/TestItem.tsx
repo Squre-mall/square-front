@@ -4,34 +4,12 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 
 type ClothsType = {
-  brand: string;
-  title: string;
-  date: string;
-  clothsImg: any;
-  price: string;
-  category: number;
+  albumId: number;
   id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
 };
-
-type categoryInfo = {
-  categoryNum: number;
-  categoryName: string;
-};
-
-const categoryList: categoryInfo[] = [
-  {
-    categoryNum: 1,
-    categoryName: "outer"
-  },
-  {
-    categoryNum: 2,
-    categoryName: "top"
-  },
-  {
-    categoryNum: 3,
-    categoryName: "bottom"
-  }
-];
 
 const useStyles = makeStyles({
   item: {
@@ -85,41 +63,31 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsItem = ({
-  id,
-  brand,
-  title,
-  date,
-  clothsImg,
-  price,
-  category
-}: ClothsType) => {
+const TestItem = ({ albumId, id, title, url, thumbnailUrl }: ClothsType) => {
   const classes = useStyles();
-  console.log({ id });
+
   return (
     <div className="cloths-item">
       <Box className={classes.item}>
         <Paper square={false} elevation={2} className={classes.paper}>
           <Box>
             <Box className={classes.clothsImgBox}>
-              <img alt="cloths" src={clothsImg} className={classes.clothsImg} />
+              <img
+                alt="cloths"
+                src={thumbnailUrl}
+                className={classes.clothsImg}
+              />
             </Box>
           </Box>
           <Box className={classes.body}>
             <Box className={classes.bodyHeader}>
-              <Box className={classes.brand}>{brand}</Box>
-              {categoryList.map(
-                ({ categoryNum, categoryName }: categoryInfo) => (
-                  <Box className={classes.category} key={categoryNum}>
-                    {categoryNum === category ? categoryName : ""}
-                  </Box>
-                )
-              )}
+              <Box className={classes.brand}>{albumId}</Box>
+              <Box className={classes.category}>{id}</Box>
             </Box>
             <Box className={classes.title}>{title}</Box>
             <Box className={classes.infoBox}>
-              <Box className={classes.price}>{price} 원</Box>
-              <Box className={classes.date}>{date}</Box>
+              <Box className={classes.price}>{id} 원</Box>
+              <Box className={classes.date}>{id}</Box>
             </Box>
           </Box>
         </Paper>
@@ -128,4 +96,4 @@ const ClothsItem = ({
   );
 };
 
-export default ClothsItem;
+export default TestItem;
