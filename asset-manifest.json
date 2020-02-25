@@ -1,28 +1,23 @@
 {
   "files": {
     "main.css": "/square-front/static/css/main.69eda509.chunk.css",
-    "main.js": "/square-front/static/js/main.c6a9a589.chunk.js",
-    "main.js.map": "/square-front/static/js/main.c6a9a589.chunk.js.map",
+    "main.js": "/square-front/static/js/main.7181c91e.chunk.js",
+    "main.js.map": "/square-front/static/js/main.7181c91e.chunk.js.map",
     "runtime-main.js": "/square-front/static/js/runtime-main.c631ecb2.js",
     "runtime-main.js.map": "/square-front/static/js/runtime-main.c631ecb2.js.map",
-    "static/js/2.9209d6f2.chunk.js": "/square-front/static/js/2.9209d6f2.chunk.js",
-    "static/js/2.9209d6f2.chunk.js.map": "/square-front/static/js/2.9209d6f2.chunk.js.map",
+    "static/js/2.2a43fb98.chunk.js": "/square-front/static/js/2.2a43fb98.chunk.js",
+    "static/js/2.2a43fb98.chunk.js.map": "/square-front/static/js/2.2a43fb98.chunk.js.map",
     "index.html": "/square-front/index.html",
-    "precache-manifest.659c0fd04e9deed58c22d425a6b42800.js": "/square-front/precache-manifest.659c0fd04e9deed58c22d425a6b42800.js",
+    "precache-manifest.fb2861733b7ce6880cf79e8e604e748e.js": "/square-front/precache-manifest.fb2861733b7ce6880cf79e8e604e748e.js",
     "service-worker.js": "/square-front/service-worker.js",
     "static/css/main.69eda509.chunk.css.map": "/square-front/static/css/main.69eda509.chunk.css.map",
-    "static/js/2.9209d6f2.chunk.js.LICENSE.txt": "/square-front/static/js/2.9209d6f2.chunk.js.LICENSE.txt",
-    "static/media/bottom-1.jpg": "/square-front/static/media/bottom-1.af4761c9.jpg",
-    "static/media/bottom-2.jpg": "/square-front/static/media/bottom-2.2a1da94d.jpg",
-    "static/media/outer-1.png": "/square-front/static/media/outer-1.f9fc5775.png",
-    "static/media/square-icon.png": "/square-front/static/media/square-icon.f3fdc687.png",
-    "static/media/top-1.jpg": "/square-front/static/media/top-1.3f050ead.jpg",
-    "static/media/top-3.jpg": "/square-front/static/media/top-3.34145c5a.jpg"
+    "static/js/2.2a43fb98.chunk.js.LICENSE.txt": "/square-front/static/js/2.2a43fb98.chunk.js.LICENSE.txt",
+    "static/media/square-icon.png": "/square-front/static/media/square-icon.f3fdc687.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c631ecb2.js",
-    "static/js/2.9209d6f2.chunk.js",
+    "static/js/2.2a43fb98.chunk.js",
     "static/css/main.69eda509.chunk.css",
-    "static/js/main.c6a9a589.chunk.js"
+    "static/js/main.7181c91e.chunk.js"
   ]
 }
