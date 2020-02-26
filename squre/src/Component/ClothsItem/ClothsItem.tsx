@@ -4,13 +4,13 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 
 type ClothsType = {
+  id: number;
   brand: string;
   title: string;
   date: string;
-  clothsImg: any;
+  clothImg: string;
   price: string;
   category: number;
-  id: number;
 };
 
 type categoryInfo = {
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     padding: 20
   },
   paper: {
-    width: 330,
+    width: 300,
     height: 330
   },
   clothsImgBox: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles({
     color: "#A4A4A4"
   },
   title: {
-    fontSize: 15,
+    fontSize: 13,
     padding: 10
   },
   price: {
@@ -90,7 +90,7 @@ const ClothsItem = ({
   brand,
   title,
   date,
-  clothsImg,
+  clothImg,
   price,
   category
 }: ClothsType) => {
@@ -102,7 +102,7 @@ const ClothsItem = ({
         <Paper square={false} elevation={2} className={classes.paper}>
           <Box>
             <Box className={classes.clothsImgBox}>
-              <img alt="cloths" src={clothsImg} className={classes.clothsImg} />
+              <img alt="cloths" src={clothImg} className={classes.clothsImg} />
             </Box>
           </Box>
           <Box className={classes.body}>
