@@ -10,7 +10,6 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  date: string;
   clothImg: any;
   price: string;
   category: number;
@@ -32,7 +31,7 @@ const ClothsContainer = () => {
         setLoading(true);
 
         const response: ClothsResponse = await axios.get(
-          "https://squaremall.pythonanywhere.com/api/?format=json"
+          "https://squaremall.pythonanywhere.com/cloth/"
         );
 
         setCloths(response.data);

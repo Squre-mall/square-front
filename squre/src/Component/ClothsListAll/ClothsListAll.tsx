@@ -8,7 +8,6 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  date: string;
   clothImg: any;
   price: string;
   category: number;
@@ -46,30 +45,19 @@ const ClothsListAll = ({ cloths }: ClothsProps) => {
         <Box className={classes.listCount}>( {cloths.length} )</Box>
       </Box>
       <Box className={classes.itemBox}>
-        {cloths
-          .reverse()
-          .map(
-            ({
-              id,
-              brand,
-              title,
-              date,
-              clothImg,
-              price,
-              category
-            }: ClothsType) => (
-              <ClothsItem
-                key={id}
-                id={id}
-                brand={brand}
-                date={date}
-                title={title}
-                clothImg={clothImg}
-                price={price}
-                category={category}
-              />
-            )
-          )}
+        {cloths.map(
+          ({ id, brand, title, clothImg, price, category }: ClothsType) => (
+            <ClothsItem
+              key={id}
+              id={id}
+              brand={brand}
+              title={title}
+              clothImg={clothImg}
+              price={price}
+              category={category}
+            />
+          )
+        )}
       </Box>
     </div>
   );

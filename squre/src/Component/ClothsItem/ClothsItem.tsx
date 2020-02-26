@@ -2,12 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
+import { Link } from "react-router-dom";
 
 type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  date: string;
   clothImg: string;
   price: string;
   category: number;
@@ -34,6 +34,9 @@ const categoryList: categoryInfo[] = [
 ];
 
 const useStyles = makeStyles({
+  clothItem: {
+    textDecoration: "none"
+  },
   item: {
     padding: 20
   },
@@ -77,11 +80,6 @@ const useStyles = makeStyles({
     fontSize: 13,
     padding: 10,
     flex: 1
-  },
-  date: {
-    fontSize: 13,
-    fontWeight: 100,
-    padding: 10
   }
 });
 
@@ -89,41 +87,44 @@ const ClothsItem = ({
   id,
   brand,
   title,
-  date,
   clothImg,
   price,
   category
 }: ClothsType) => {
   const classes = useStyles();
-  console.log({ id });
   return (
     <div className="cloths-item">
-      <Box className={classes.item}>
-        <Paper square={false} elevation={2} className={classes.paper}>
-          <Box>
-            <Box className={classes.clothsImgBox}>
-              <img alt="cloths" src={clothImg} className={classes.clothsImg} />
+      <Link to={`/square-front/detail/${id}`} className={classes.clothItem}>
+        <Box className={classes.item}>
+          <Paper square={false} elevation={2} className={classes.paper}>
+            <Box>
+              <Box className={classes.clothsImgBox}>
+                <img
+                  alt="cloths"
+                  src={clothImg}
+                  className={classes.clothsImg}
+                />
+              </Box>
             </Box>
-          </Box>
-          <Box className={classes.body}>
-            <Box className={classes.bodyHeader}>
-              <Box className={classes.brand}>{brand}</Box>
-              {categoryList.map(
-                ({ categoryNum, categoryName }: categoryInfo) => (
-                  <Box className={classes.category} key={categoryNum}>
-                    {categoryNum === category ? categoryName : ""}
-                  </Box>
-                )
-              )}
+            <Box className={classes.body}>
+              <Box className={classes.bodyHeader}>
+                <Box className={classes.brand}>{brand}</Box>
+                {categoryList.map(
+                  ({ categoryNum, categoryName }: categoryInfo) => (
+                    <Box className={classes.category} key={categoryNum}>
+                      {categoryNum === category ? categoryName : ""}
+                    </Box>
+                  )
+                )}
+              </Box>
+              <Box className={classes.title}>{title}</Box>
+              <Box className={classes.infoBox}>
+                <Box className={classes.price}>{price} 원</Box>
+              </Box>
             </Box>
-            <Box className={classes.title}>{title}</Box>
-            <Box className={classes.infoBox}>
-              <Box className={classes.price}>{price} 원</Box>
-              <Box className={classes.date}>{date}</Box>
-            </Box>
-          </Box>
-        </Paper>
-      </Box>
+          </Paper>
+        </Box>
+      </Link>
     </div>
   );
 };

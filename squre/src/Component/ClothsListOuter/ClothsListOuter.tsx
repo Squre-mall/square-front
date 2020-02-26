@@ -8,7 +8,6 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  date: string;
   clothImg: any;
   price: string;
   category: number;
@@ -51,20 +50,11 @@ const ClothsListOuter = ({ cloths }: ClothsProps) => {
         {cloths
           .filter(clothsInfo => clothsInfo.category === 1)
           .map(
-            ({
-              id,
-              brand,
-              title,
-              date,
-              clothImg,
-              price,
-              category
-            }: ClothsType) => (
+            ({ id, brand, title, clothImg, price, category }: ClothsType) => (
               <ClothsItem
                 key={id}
                 id={id}
                 brand={brand}
-                date={date}
                 title={title}
                 clothImg={clothImg}
                 price={price}
