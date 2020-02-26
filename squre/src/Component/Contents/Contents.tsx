@@ -3,8 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Route, Switch } from "react-router-dom";
 import Notice from "../../pages/Notice";
 import Board from "../../pages/Board";
-import TestAjaxContainer from "../../Container/TestAjaxContainer";
-// import ClothsContainer from "../../Container/ClothsContainer";
+import ClothsContainer from "../../Container/ClothsContainer";
 
 const useStyles = makeStyles({
   contents: {
@@ -17,8 +16,7 @@ const Contents = () => {
   const classes = useStyles();
   return (
     <div className={classes.contents}>
-      {/* <ClothsContainer /> */}
-      <TestAjaxContainer />
+      <ClothsContainer />
       <Switch>
         <Route path="/Notice" component={Notice} />
         <Route path="/Board" component={Board} />

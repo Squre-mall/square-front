@@ -1,96 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import outer_1 from "./itemImg/outer-1.png";
-import outer_2 from "./itemImg/outer-2.jpg";
-import top_1 from "./itemImg/top-1.jpg";
-import bottom_1 from "./itemImg/bottom-1.jpg";
-import top_2 from "./itemImg/top-2.jpg";
-import bottom_2 from "./itemImg/bottom-2.jpg";
-import top_3 from "./itemImg/top-3.jpg";
-import { Route, Switch } from "react-router-dom";
 import ClothsItem from "../../Component/ClothsItem";
+import { Route, Switch } from "react-router-dom";
+import axios from "axios";
 
 type ClothsType = {
   id: number;
   brand: string;
   title: string;
   date: string;
-  clothsImg: any;
+  clothImg: any;
   price: string;
   category: number;
 };
 
-const numberFormat = (price: number) => {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+type ClothsResponse = {
+  data: ClothsType[];
 };
-
-const clothsInfo = [
-  {
-    id: 0,
-    brand: "LMOOD",
-    title: "미니멀 트러커 자켓 Beige",
-    date: "2020-02-14",
-    clothsImg: outer_1,
-    price: numberFormat(179000),
-    category: 1
-  },
-  {
-    id: 1,
-    brand: "LARROM.",
-    title: "Base jaket",
-    date: "2020-02-15",
-    clothsImg: outer_2,
-    price: numberFormat(81000),
-    category: 1
-  },
-  {
-    id: 2,
-    brand: "SUPREME",
-    title: "Supreme Box Logo T-shirts",
-    date: "2020-02-15",
-    clothsImg: top_1,
-    price: numberFormat(190000),
-    category: 2
-  },
-  {
-    id: 3,
-    brand: "GOOCCI",
-    title: "Logo training pants",
-    date: "2020-02-17",
-    clothsImg: bottom_1,
-    price: numberFormat(279000),
-    category: 3
-  },
-  {
-    id: 4,
-    brand: "KANGOL",
-    title: "Club L/S T-shirt 3505 BLACK",
-    date: "2020-02-20",
-    clothsImg: top_2,
-    price: numberFormat(65000),
-    category: 2
-  },
-  {
-    id: 5,
-    brand: "GUESS",
-    title: "여성 M톤 틴 인디고 슈퍼스키니 청바지 데님 YG1D9053",
-    date: "2020-02-21",
-    clothsImg: bottom_2,
-    price: numberFormat(99000),
-    category: 3
-  },
-  {
-    id: 6,
-    brand: "NOMANUAL",
-    title: " R.D LONG SLEEVE TEE - BLACK",
-    date: "2020-02-22",
-    clothsImg: top_3,
-    price: numberFormat(49000),
-    category: 2
-  }
-];
 
 const useStyles = makeStyles({
   itemBox: {
@@ -109,90 +37,81 @@ const useStyles = makeStyles({
   }
 });
 
-const clothsListInfoAll = clothsInfo
-  .reverse()
-  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
-    <ClothsItem
-      id={id}
-      key={id}
-      title={title}
-      brand={brand}
-      date={date}
-      clothsImg={clothsImg}
-      price={price}
-      category={category}
-    />
-  ));
-
-const clothsListInfoOuter = clothsInfo
-  .filter(clothsInfo => clothsInfo.category === 1)
-  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
-    <ClothsItem
-      id={id}
-      key={id}
-      title={title}
-      brand={brand}
-      date={date}
-      clothsImg={clothsImg}
-      price={price}
-      category={category}
-    />
-  ));
-
-const clothsListInfoTop = clothsInfo
-  .filter(clothsInfo => clothsInfo.category === 2)
-  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
-    <ClothsItem
-      id={id}
-      key={id}
-      title={title}
-      brand={brand}
-      date={date}
-      clothsImg={clothsImg}
-      price={price}
-      category={category}
-    />
-  ));
-
-const clothsListInfoBottom = clothsInfo
-  .filter(clothsInfo => clothsInfo.category === 3)
-  .map(({ id, title, brand, date, clothsImg, price, category }: ClothsType) => (
-    <ClothsItem
-      id={id}
-      key={id}
-      title={title}
-      brand={brand}
-      date={date}
-      clothsImg={clothsImg}
-      price={price}
-      category={category}
-    />
-  ));
-
 const ClothsContainer = () => {
+  const [cloths, setCloths] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const classes = useStyles();
+
+  useEffect(() => {
+    const fetchCloths = async () => {
+      try {
+        setCloths(null);
+        setError(null);
+        setLoading(true);
+
+        const response: ClothsResponse = await axios(
+          "http://squaremall.pythonanywhere.com/api/?format=json"
+        );
+
+        setCloths(response.data);
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+    fetchCloths();
+  }, []);
+
+  if (loading) return <div> data loading...</div>;
+  if (error) return <div> error ! </div>;
+  if (!cloths) return null;
+
   return (
     <div className="cloths-list">
       <Switch>
         <Route
           exact
-          path="/"
+          path="/square-front/"
           render={() => (
             <div>
               <Box className={classes.titleBox}>
                 <Typography variant="h4" className={classes.title}>
                   All
                 </Typography>
-                <Box className={classes.listCount}>
-                  ( {clothsListInfoAll.length} )
-                </Box>
+                <Box className={classes.listCount}>( {cloths.length} )</Box>
               </Box>
-              <Box className={classes.itemBox}> {clothsListInfoAll} </Box>
+              <Box className={classes.itemBox}>
+                {cloths.map(
+                  ({
+                    id,
+                    brand,
+                    title,
+                    date,
+                    clothImg,
+                    price,
+                    category
+                  }: ClothsType) => (
+                    <ClothsItem
+                      key={id}
+                      id={id}
+                      brand={brand}
+                      date={date}
+                      title={title}
+                      clothImg={clothImg}
+                      price={price}
+                      category={category}
+                    />
+                  )
+                )}
+              </Box>
             </div>
           )}
         />
         <Route
-          path="/Outer"
+          exact
+          path="/square-front/outer"
           render={() => (
             <div>
               <Box className={classes.titleBox}>
@@ -200,15 +119,46 @@ const ClothsContainer = () => {
                   Outer
                 </Typography>
                 <Box className={classes.listCount}>
-                  ( {clothsListInfoOuter.length} )
+                  ({" "}
+                  {
+                    cloths.filter(clothsInfo => clothsInfo.category === 1)
+                      .length
+                  }{" "}
+                  )
                 </Box>
               </Box>
-              <Box className={classes.itemBox}> {clothsListInfoOuter} </Box>
+              <Box className={classes.itemBox}>
+                {cloths
+                  .filter(clothsInfo => clothsInfo.category === 1)
+                  .map(
+                    ({
+                      id,
+                      brand,
+                      title,
+                      date,
+                      clothImg,
+                      price,
+                      category
+                    }: ClothsType) => (
+                      <ClothsItem
+                        key={id}
+                        id={id}
+                        brand={brand}
+                        date={date}
+                        title={title}
+                        clothImg={clothImg}
+                        price={price}
+                        category={category}
+                      />
+                    )
+                  )}
+              </Box>
             </div>
           )}
         />
         <Route
-          path="/Top"
+          exact
+          path="/square-front/top"
           render={() => (
             <div>
               <Box className={classes.titleBox}>
@@ -216,15 +166,46 @@ const ClothsContainer = () => {
                   Top
                 </Typography>
                 <Box className={classes.listCount}>
-                  ( {clothsListInfoTop.length} )
+                  ({" "}
+                  {
+                    cloths.filter(clothsInfo => clothsInfo.category === 2)
+                      .length
+                  }{" "}
+                  )
                 </Box>
               </Box>
-              <Box className={classes.itemBox}> {clothsListInfoTop} </Box>
+              <Box className={classes.itemBox}>
+                {cloths
+                  .filter(clothsInfo => clothsInfo.category === 2)
+                  .map(
+                    ({
+                      id,
+                      brand,
+                      title,
+                      date,
+                      clothImg,
+                      price,
+                      category
+                    }: ClothsType) => (
+                      <ClothsItem
+                        key={id}
+                        id={id}
+                        brand={brand}
+                        date={date}
+                        title={title}
+                        clothImg={clothImg}
+                        price={price}
+                        category={category}
+                      />
+                    )
+                  )}
+              </Box>
             </div>
           )}
         />
         <Route
-          path="/Bottom"
+          exact
+          path="/square-front/bottom"
           render={() => (
             <div>
               <Box className={classes.titleBox}>
@@ -232,10 +213,40 @@ const ClothsContainer = () => {
                   Bottom
                 </Typography>
                 <Box className={classes.listCount}>
-                  ( {clothsListInfoBottom.length} )
+                  ({" "}
+                  {
+                    cloths.filter(clothsInfo => clothsInfo.category === 3)
+                      .length
+                  }{" "}
+                  )
                 </Box>
               </Box>
-              <Box className={classes.itemBox}> {clothsListInfoBottom} </Box>
+              <Box className={classes.itemBox}>
+                {cloths
+                  .filter(clothsInfo => clothsInfo.category === 3)
+                  .map(
+                    ({
+                      id,
+                      brand,
+                      title,
+                      date,
+                      clothImg,
+                      price,
+                      category
+                    }: ClothsType) => (
+                      <ClothsItem
+                        key={id}
+                        id={id}
+                        brand={brand}
+                        date={date}
+                        title={title}
+                        clothImg={clothImg}
+                        price={price}
+                        category={category}
+                      />
+                    )
+                  )}
+              </Box>
             </div>
           )}
         />
