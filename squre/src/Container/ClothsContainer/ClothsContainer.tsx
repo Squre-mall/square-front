@@ -31,7 +31,7 @@ const ClothsContainer = () => {
         setError(null);
         setLoading(true);
 
-        const response: ClothsResponse = await axios(
+        const response: ClothsResponse = await axios.get(
           "https://squaremall.pythonanywhere.com/api/?format=json"
         );
 

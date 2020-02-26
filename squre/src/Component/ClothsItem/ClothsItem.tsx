@@ -38,8 +38,8 @@ const useStyles = makeStyles({
     padding: 20
   },
   paper: {
-    width: 330,
-    height: 350
+    width: 300,
+    height: 330
   },
   clothsImgBox: {
     height: 200,
@@ -70,7 +70,7 @@ const useStyles = makeStyles({
     color: "#A4A4A4"
   },
   title: {
-    fontSize: 15,
+    fontSize: 13,
     padding: 10
   },
   price: {

@@ -8,7 +8,7 @@ import ClothsContainer from "../../Container/ClothsContainer";
 const useStyles = makeStyles({
   contents: {
     flex: 9,
-    marginLeft: 350
+    marginLeft: 320
   }
 });
 

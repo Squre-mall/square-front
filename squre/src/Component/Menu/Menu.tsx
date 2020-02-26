@@ -2,8 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import ContactSupportIcon from "@material-ui/icons/ContactSupport";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import Box from "@material-ui/core/Box";
 import squareIcon from "./square-icon.png";
 
@@ -90,7 +88,6 @@ const Menu = () => {
         <hr />
         <Link to="/square-front/notice" className={classes.menuItem}>
           <Box className={classes.listItem}>
-            <ErrorOutlineIcon style={{ fontSize: 15, padding: 1 }} />
             <Typography className={classes.iconMenu} variant="h3">
               Notice
             </Typography>
@@ -98,7 +95,6 @@ const Menu = () => {
         </Link>
         <Link to="/square-front/Board" className={classes.menuItem}>
           <Box className={classes.listItem}>
-            <ContactSupportIcon style={{ fontSize: 15, padding: 1 }} />
             <Typography className={classes.iconMenu} variant="h3">
               Q&A
             </Typography>
