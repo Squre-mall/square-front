@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
   paper: {
     width: 330,
-    height: 330
+    height: 350
   },
   clothsImgBox: {
     height: 200,

@@ -18,8 +18,8 @@ const Contents = () => {
     <div className={classes.contents}>
       <ClothsContainer />
       <Switch>
-        <Route path="/Notice" component={Notice} />
-        <Route path="/Board" component={Board} />
+        <Route path="/square-front/Notice" component={Notice} />
+        <Route path="/square-front/Board" component={Board} />
       </Switch>
     </div>
   );
