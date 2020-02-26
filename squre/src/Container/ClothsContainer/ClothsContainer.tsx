@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import ClothsItem from "../../Component/ClothsItem";
 import { Route, Switch } from "react-router-dom";
 import axios from "axios";
+import ClothsListOuter from "../../Component/ClothsListOuter";
+import ClothsListTop from "../../Component/ClothsListTop";
+import ClothsListBottom from "../../Component/ClothsListBottom";
+import ClothsListAll from "../../Component/ClothsListAll";
 
 type ClothsType = {
   id: number;
@@ -20,30 +20,10 @@ type ClothsResponse = {
   data: ClothsType[];
 };
 
-const useStyles = makeStyles({
-  itemBox: {
-    display: "flex",
-    flexWrap: "wrap",
-    width: "100%"
-  },
-  titleBox: {
-    display: "flex"
-  },
-  title: {
-    padding: "10px 10px 30px 20px"
-  },
-  listCount: {
-    paddingTop: "1.7em"
-  }
-});
-
 const ClothsContainer = () => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const classes = useStyles();
-
   useEffect(() => {
     const fetchCloths = async () => {
       try {
@@ -52,7 +32,7 @@ const ClothsContainer = () => {
         setLoading(true);
 
         const response: ClothsResponse = await axios(
-          "http://squaremall.pythonanywhere.com/api/?format=json"
+          "https://squaremall.pythonanywhere.com/api/?format=json"
         );
 
         setCloths(response.data);
@@ -74,181 +54,22 @@ const ClothsContainer = () => {
         <Route
           exact
           path="/square-front/"
-          render={() => (
-            <div>
-              <Box className={classes.titleBox}>
-                <Typography variant="h4" className={classes.title}>
-                  All
-                </Typography>
-                <Box className={classes.listCount}>( {cloths.length} )</Box>
-              </Box>
-              <Box className={classes.itemBox}>
-                {cloths.map(
-                  ({
-                    id,
-                    brand,
-                    title,
-                    date,
-                    clothImg,
-                    price,
-                    category
-                  }: ClothsType) => (
-                    <ClothsItem
-                      key={id}
-                      id={id}
-                      brand={brand}
-                      date={date}
-                      title={title}
-                      clothImg={clothImg}
-                      price={price}
-                      category={category}
-                    />
-                  )
-                )}
-              </Box>
-            </div>
-          )}
+          render={() => <ClothsListAll cloths={cloths} />}
         />
         <Route
           exact
           path="/square-front/outer"
-          render={() => (
-            <div>
-              <Box className={classes.titleBox}>
-                <Typography variant="h4" className={classes.title}>
-                  Outer
-                </Typography>
-                <Box className={classes.listCount}>
-                  ({" "}
-                  {
-                    cloths.filter(clothsInfo => clothsInfo.category === 1)
-                      .length
-                  }{" "}
-                  )
-                </Box>
-              </Box>
-              <Box className={classes.itemBox}>
-                {cloths
-                  .filter(clothsInfo => clothsInfo.category === 1)
-                  .map(
-                    ({
-                      id,
-                      brand,
-                      title,
-                      date,
-                      clothImg,
-                      price,
-                      category
-                    }: ClothsType) => (
-                      <ClothsItem
-                        key={id}
-                        id={id}
-                        brand={brand}
-                        date={date}
-                        title={title}
-                        clothImg={clothImg}
-                        price={price}
-                        category={category}
-                      />
-                    )
-                  )}
-              </Box>
-            </div>
-          )}
+          render={() => <ClothsListOuter cloths={cloths} />}
         />
         <Route
           exact
           path="/square-front/top"
-          render={() => (
-            <div>
-              <Box className={classes.titleBox}>
-                <Typography variant="h4" className={classes.title}>
-                  Top
-                </Typography>
-                <Box className={classes.listCount}>
-                  ({" "}
-                  {
-                    cloths.filter(clothsInfo => clothsInfo.category === 2)
-                      .length
-                  }{" "}
-                  )
-                </Box>
-              </Box>
-              <Box className={classes.itemBox}>
-                {cloths
-                  .filter(clothsInfo => clothsInfo.category === 2)
-                  .map(
-                    ({
-                      id,
-                      brand,
-                      title,
-                      date,
-                      clothImg,
-                      price,
-                      category
-                    }: ClothsType) => (
-                      <ClothsItem
-                        key={id}
-                        id={id}
-                        brand={brand}
-                        date={date}
-                        title={title}
-                        clothImg={clothImg}
-                        price={price}
-                        category={category}
-                      />
-                    )
-                  )}
-              </Box>
-            </div>
-          )}
+          render={() => <ClothsListTop cloths={cloths} />}
         />
         <Route
           exact
           path="/square-front/bottom"
-          render={() => (
-            <div>
-              <Box className={classes.titleBox}>
-                <Typography variant="h4" className={classes.title}>
-                  Bottom
-                </Typography>
-                <Box className={classes.listCount}>
-                  ({" "}
-                  {
-                    cloths.filter(clothsInfo => clothsInfo.category === 3)
-                      .length
-                  }{" "}
-                  )
-                </Box>
-              </Box>
-              <Box className={classes.itemBox}>
-                {cloths
-                  .filter(clothsInfo => clothsInfo.category === 3)
-                  .map(
-                    ({
-                      id,
-                      brand,
-                      title,
-                      date,
-                      clothImg,
-                      price,
-                      category
-                    }: ClothsType) => (
-                      <ClothsItem
-                        key={id}
-                        id={id}
-                        brand={brand}
-                        date={date}
-                        title={title}
-                        clothImg={clothImg}
-                        price={price}
-                        category={category}
-                      />
-                    )
-                  )}
-              </Box>
-            </div>
-          )}
+          render={() => <ClothsListBottom cloths={cloths} />}
         />
       </Switch>
     </div>
