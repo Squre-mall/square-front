@@ -41,6 +41,9 @@ const useStyles = makeStyles({
     width: 500,
     padding: 30
   },
+  title: {
+    padding: "0 15px"
+  },
   textField: {
     padding: 20
   }
@@ -60,7 +63,7 @@ const TestPost = () => {
   const fetchClothsPost = cloths => {
     console.log({ cloths });
     try {
-      axios.post("https://squaremall.pythonanywhere.com/api/", cloths);
+      axios.post("https://squaremall.pythonanywhere.com/cloth/", cloths);
     } catch (e) {
       setError(e);
     }
@@ -94,7 +97,9 @@ const TestPost = () => {
       >
         <DialogTitle id="form-dialog-title">POST</DialogTitle>
         <DialogContent className={classes.root}>
-          <DialogContentText>POST 해봅시다</DialogContentText>
+          <DialogContentText className={classes.title}>
+            Sample
+          </DialogContentText>
           <Box className={classes.imgRoot}>
             <img src={form} alt="json form" className={classes.formImg} />
           </Box>
