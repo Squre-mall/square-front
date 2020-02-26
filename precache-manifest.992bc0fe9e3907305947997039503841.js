@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ce0162883e1b7ce3cbfc4d8a800d232d",
+    "revision": "06b4ed1beded26d9be1f59167c4ff0e3",
     "url": "/square-front/index.html"
   },
   {
-    "revision": "71efe39949056e2de6e7",
+    "revision": "e1214c5bcea5155f13ff",
     "url": "/square-front/static/css/main.69eda509.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/square-front/static/js/2.2a43fb98.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "71efe39949056e2de6e7",
-    "url": "/square-front/static/js/main.961426d6.chunk.js"
+    "revision": "e1214c5bcea5155f13ff",
+    "url": "/square-front/static/js/main.69f838e5.chunk.js"
   },
   {
     "revision": "3d384ffc9dc8ee1dbeb0",
