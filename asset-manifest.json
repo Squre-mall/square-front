@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/square-front/static/css/main.69eda509.chunk.css",
-    "main.js": "/square-front/static/js/main.c5d2d69f.chunk.js",
-    "main.js.map": "/square-front/static/js/main.c5d2d69f.chunk.js.map",
+    "main.js": "/square-front/static/js/main.13141c86.chunk.js",
+    "main.js.map": "/square-front/static/js/main.13141c86.chunk.js.map",
     "runtime-main.js": "/square-front/static/js/runtime-main.c631ecb2.js",
     "runtime-main.js.map": "/square-front/static/js/runtime-main.c631ecb2.js.map",
     "static/js/2.bece2e47.chunk.js": "/square-front/static/js/2.bece2e47.chunk.js",
     "static/js/2.bece2e47.chunk.js.map": "/square-front/static/js/2.bece2e47.chunk.js.map",
     "index.html": "/square-front/index.html",
-    "precache-manifest.e9e47e1f51319a6a72647d0819f2d59e.js": "/square-front/precache-manifest.e9e47e1f51319a6a72647d0819f2d59e.js",
+    "precache-manifest.1dc514b8cd42a31464ce22c82d9ff449.js": "/square-front/precache-manifest.1dc514b8cd42a31464ce22c82d9ff449.js",
     "service-worker.js": "/square-front/service-worker.js",
     "static/css/main.69eda509.chunk.css.map": "/square-front/static/css/main.69eda509.chunk.css.map",
     "static/js/2.bece2e47.chunk.js.LICENSE.txt": "/square-front/static/js/2.bece2e47.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.c631ecb2.js",
     "static/js/2.bece2e47.chunk.js",
     "static/css/main.69eda509.chunk.css",
-    "static/js/main.c5d2d69f.chunk.js"
+    "static/js/main.13141c86.chunk.js"
   ]
 }
