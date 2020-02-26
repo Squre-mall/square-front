@@ -14,10 +14,6 @@ const Pw = () => {
   const [checkPw] = useState("square!");
   const [postOpen, setPostOpen] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleModal = () => {
     pw === checkPw ? setPostOpen(true) : setPostOpen(false);
   };
@@ -26,7 +22,7 @@ const Pw = () => {
     <div className="pwCheck">
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(!open)}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Only Access Admin</DialogTitle>
@@ -43,7 +39,7 @@ const Pw = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={() => setOpen(!open)} color="primary">
             Cancel
           </Button>
           <Button onClick={handleModal} color="primary">

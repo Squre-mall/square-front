@@ -24,10 +24,6 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   return (
     <div className={classes.header}>
       <Box style={{ flex: 1 }} />
@@ -43,7 +39,11 @@ const Header = () => {
           </Button>
         </Box>
         <Box className={classes.button}>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setOpen(!open)}
+          >
             add
           </Button>
           {open ? <Pw /> : ""}
