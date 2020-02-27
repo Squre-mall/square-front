@@ -15,7 +15,7 @@ type ClothsType = {
 };
 
 type ClothsResponse = {
-  data: ClothsType;
+  data: ClothsType[];
 };
 
 const DetailContainer = ({ id }) => {
@@ -31,9 +31,11 @@ const DetailContainer = ({ id }) => {
         setLoading(true);
 
         const response: ClothsResponse = await axios.get(
-          `https://squaremall.pythonanywhere.com/cloth/${id}`
+          `https://squaremall.pythonanywhere.com/cloth/`,
+          {
+            params: { id }
+          }
         );
-
         setCloth(response.data);
       } catch (e) {
         setError(e);
@@ -48,7 +50,33 @@ const DetailContainer = ({ id }) => {
   if (error) return <div> error ! </div>;
   if (!cloth) return null;
 
-  return <ClothsDetail cloth={cloth} />;
+  return (
+    <div>
+      {cloth.map(
+        ({
+          id,
+          brand,
+          title,
+          description,
+          clothImgUrl,
+          pageUrl,
+          price,
+          category
+        }: ClothsType) => (
+          <ClothsDetail
+            key={id}
+            brand={brand}
+            title={title}
+            description={description}
+            clothImgUrl={clothImgUrl}
+            pageUrl={pageUrl}
+            price={price}
+            category={category}
+          />
+        )
+      )}
+    </div>
+  );
 };
 
 export default DetailContainer;
