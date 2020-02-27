@@ -4,40 +4,15 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-
 type ClothsType = {
-  id: number;
   brand: string;
   title: string;
-  clothImg: string;
+  description: string;
+  clothImgUrl: string;
+  pageUrl: string;
   price: string;
-  category: number;
+  category: string;
 };
-
-type ClothProps = {
-  cloth: ClothsType;
-};
-
-type categoryInfo = {
-  categoryNum: number;
-  categoryName: string;
-};
-
-const categoryList: categoryInfo[] = [
-  {
-    categoryNum: 1,
-    categoryName: "outer"
-  },
-  {
-    categoryNum: 2,
-    categoryName: "top"
-  },
-  {
-    categoryNum: 3,
-    categoryName: "bottom"
-  }
-];
-
 const useStyles = makeStyles({
   root: {
     padding: 20
@@ -67,15 +42,17 @@ const useStyles = makeStyles({
     height: 600
   },
   infoBox: {
-    padding: 20
+    padding: 20,
+    width: 550
   },
   title: {
-    padding: 30,
+    padding: "20px 30px",
     fontSize: 30,
-    fontWeight: 700
+    fontWeight: 700,
+    lineHeight: "40px"
   },
   brand: {
-    padding: 30,
+    padding: "20px 30px",
     fontSize: 20,
     fontWeight: 500
   },
@@ -84,10 +61,11 @@ const useStyles = makeStyles({
     height: 300
   },
   detailHeader: {
-    padding: 30,
+    padding: "10px 30px",
     width: "100%"
   },
   detailContents: {
+    fontSize: 12,
     padding: 30,
     lineHeight: "30px"
   },
@@ -95,7 +73,7 @@ const useStyles = makeStyles({
     display: "flex"
   },
   price: {
-    padding: 30,
+    padding: "20px 30px",
     flex: 1
   },
   buy: {
@@ -103,58 +81,48 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsDetail = ({ cloth }: ClothProps) => {
+const ClothsDetail = ({
+  brand,
+  title,
+  description,
+  clothImgUrl,
+  pageUrl,
+  price,
+  category
+}: ClothsType) => {
   const classes = useStyles();
 
   return (
     <div className="detail-item">
       <Box className={classes.root}>
         <Box className={classes.header}>
-          {categoryList
-            .filter(clothsInfo => clothsInfo.categoryNum === cloth.category)
-            .map(({ categoryNum, categoryName }: categoryInfo) => (
-              <Box className={classes.category} key={categoryNum}>
-                {categoryNum === cloth.category ? categoryName : null}
-              </Box>
-            ))}
+          <Box className={classes.category}> {category} </Box>
           <Box py={2}> > </Box>
-          <Box className={classes.headerBrand}>{cloth.brand}</Box>
+          <Box className={classes.headerBrand}>{brand}</Box>
         </Box>
         <Box className={classes.contents}>
           <Box className={classes.imgBox}>
-            <img
-              src={cloth.clothImg}
-              alt={cloth.title}
-              className={classes.img}
-            />
+            <img src={clothImgUrl} alt={title} className={classes.img} />
           </Box>
           <Box className={classes.infoBox}>
             <Box className={classes.box}>
               <Typography variant="h4" className={classes.detailHeader}>
                 Detail
               </Typography>
-              <Box className={classes.detailContents}>
-                All the colors and personalities you can’t see right through
-                what I truly am you’re hurting me without noticing I’m so, so
-                broke like someone just robbed me I’m no invincible I have much
-                memories of getting more weaker I know I’m not loveable but you
-                know what you’d have to say
-              </Box>
+              <Box className={classes.detailContents}>{description}</Box>
             </Box>
             <hr />
-            <Box className={classes.title}> {cloth.title} </Box>
-            <Box className={classes.brand}> {cloth.brand} </Box>
+            <Box className={classes.title}> {title} </Box>
+            <Box className={classes.brand}> {brand} </Box>
             <hr />
             <Box className={classes.subBox}>
-              <Box className={classes.price}> {cloth.price} </Box>
+              <Box className={classes.price}> {price} 원 </Box>
               <Box className={classes.buy}>
-                <IconButton
-                  color="primary"
-                  aria-label="add to shopping cart"
-                  onClick={() => alert("개발중임니다...")}
-                >
-                  <AddShoppingCartIcon />
-                </IconButton>
+                <a href={pageUrl} target="_blank" rel="noopener noreferrer">
+                  <IconButton color="primary" aria-label="add to shopping cart">
+                    <AddShoppingCartIcon />
+                  </IconButton>
+                </a>
               </Box>
             </Box>
           </Box>

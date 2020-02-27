@@ -9,16 +9,17 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Box from "@material-ui/core/Box";
 import axios from "axios";
-
 import form from "./img/carbon.png";
 
 type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  clothImg: any;
+  description: string;
+  clothImgUrl: string;
+  pageUrl: string;
   price: string;
-  category: number;
+  category: string;
 };
 
 type ClothsResponse = {
@@ -52,7 +53,9 @@ const TestPost = () => {
   const [open, setOpen] = useState(true);
   const [brand, setBrand] = useState("");
   const [title, setTitle] = useState("");
-  const [clothImg, setClothImg] = useState("");
+  const [description, setDescription] = useState("");
+  const [clothImgUrl, setClothImgUrl] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
   const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
   const classes = useStyles();
@@ -69,7 +72,9 @@ const TestPost = () => {
     const cloths = {
       brand: brand,
       title: title,
-      clothImg: clothImg,
+      description: description,
+      clothImgUrl: clothImgUrl,
+      pageUrl: pageUrl,
       price: price,
       category: parseInt(category)
     };
@@ -115,11 +120,29 @@ const TestPost = () => {
             />
             <TextField
               id="standard-textarea"
+              label="Description"
+              placeholder="description"
+              multiline
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              className={classes.textField}
+            />
+            <TextField
+              id="standard-textarea"
               label="ImgUrl"
               placeholder="Img url"
               multiline
-              value={clothImg}
-              onChange={e => setClothImg(e.target.value)}
+              value={clothImgUrl}
+              onChange={e => setClothImgUrl(e.target.value)}
+              className={classes.textField}
+            />
+            <TextField
+              id="standard-textarea"
+              label="page url"
+              placeholder="page url"
+              multiline
+              value={pageUrl}
+              onChange={e => setPageUrl(e.target.value)}
               className={classes.textField}
             />
             <TextField

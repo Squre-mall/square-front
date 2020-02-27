@@ -8,30 +8,12 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  clothImg: string;
+  description: string;
+  clothImgUrl: string;
+  pageUrl: string;
   price: string;
-  category: number;
+  category: string;
 };
-
-type categoryInfo = {
-  categoryNum: number;
-  categoryName: string;
-};
-
-const categoryList: categoryInfo[] = [
-  {
-    categoryNum: 1,
-    categoryName: "outer"
-  },
-  {
-    categoryNum: 2,
-    categoryName: "top"
-  },
-  {
-    categoryNum: 3,
-    categoryName: "bottom"
-  }
-];
 
 const useStyles = makeStyles({
   clothItem: {
@@ -87,7 +69,9 @@ const ClothsItem = ({
   id,
   brand,
   title,
-  clothImg,
+  description,
+  clothImgUrl,
+  pageUrl,
   price,
   category
 }: ClothsType) => {
@@ -101,7 +85,7 @@ const ClothsItem = ({
               <Box className={classes.clothsImgBox}>
                 <img
                   alt="cloths"
-                  src={clothImg}
+                  src={clothImgUrl}
                   className={classes.clothsImg}
                 />
               </Box>
@@ -109,13 +93,7 @@ const ClothsItem = ({
             <Box className={classes.body}>
               <Box className={classes.bodyHeader}>
                 <Box className={classes.brand}>{brand}</Box>
-                {categoryList.map(
-                  ({ categoryNum, categoryName }: categoryInfo) => (
-                    <Box className={classes.category} key={categoryNum}>
-                      {categoryNum === category ? categoryName : ""}
-                    </Box>
-                  )
-                )}
+                <Box className={classes.category}> {category} </Box>
               </Box>
               <Box className={classes.title}>{title}</Box>
               <Box className={classes.infoBox}>
