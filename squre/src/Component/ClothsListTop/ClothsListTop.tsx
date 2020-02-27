@@ -8,9 +8,11 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  clothImg: any;
+  description: string;
+  clothImgUrl: string;
+  pageUrl: string;
   price: string;
-  category: number;
+  category: string;
 };
 
 type ClothsProps = {
@@ -43,20 +45,31 @@ const ClothsListTop = ({ cloths }: ClothsProps) => {
           Top
         </Typography>
         <Box className={classes.listCount}>
-          ({cloths.filter(clothsInfo => clothsInfo.category === 2).length})
+          ({cloths.filter(clothsInfo => clothsInfo.category === "top").length})
         </Box>
       </Box>
       <Box className={classes.itemBox}>
         {cloths
-          .filter(clothsInfo => clothsInfo.category === 2)
+          .filter(clothsInfo => clothsInfo.category === "top")
           .map(
-            ({ id, brand, title, clothImg, price, category }: ClothsType) => (
+            ({
+              id,
+              brand,
+              title,
+              description,
+              clothImgUrl,
+              pageUrl,
+              price,
+              category
+            }: ClothsType) => (
               <ClothsItem
                 key={id}
                 id={id}
                 brand={brand}
                 title={title}
-                clothImg={clothImg}
+                description={description}
+                clothImgUrl={clothImgUrl}
+                pageUrl={pageUrl}
                 price={price}
                 category={category}
               />

@@ -7,9 +7,11 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  clothImg: any;
+  description: string;
+  clothImgUrl: string;
+  pageUrl: string;
   price: string;
-  category: number;
+  category: string;
 };
 
 type ClothsResponse = {
