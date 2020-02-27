@@ -18,6 +18,26 @@ type ClothProps = {
   cloth: ClothsType;
 };
 
+type categoryInfo = {
+  categoryNum: number;
+  categoryName: string;
+};
+
+const categoryList: categoryInfo[] = [
+  {
+    categoryNum: 1,
+    categoryName: "outer"
+  },
+  {
+    categoryNum: 2,
+    categoryName: "top"
+  },
+  {
+    categoryNum: 3,
+    categoryName: "bottom"
+  }
+];
+
 const useStyles = makeStyles({
   root: {
     padding: 20
@@ -25,10 +45,16 @@ const useStyles = makeStyles({
   header: {
     display: "flex"
   },
+  category: {
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 13,
+    color: "gray"
+  },
   headerBrand: {
     fontSize: 20,
     fontWeight: "bold",
-    padding: 10
+    padding: 14
   },
   contents: {
     display: "flex"
@@ -45,7 +71,8 @@ const useStyles = makeStyles({
   },
   title: {
     padding: 30,
-    fontSize: 30
+    fontSize: 30,
+    fontWeight: 700
   },
   brand: {
     padding: 30,
@@ -56,8 +83,13 @@ const useStyles = makeStyles({
     width: "100%",
     height: 300
   },
-  detail: {
-    float: "right"
+  detailHeader: {
+    padding: 30,
+    width: "100%"
+  },
+  detailContents: {
+    padding: "0 30px",
+    lineHeight: "30px"
   },
   subBox: {
     display: "flex"
@@ -78,6 +110,14 @@ const ClothsDetail = ({ cloth }: ClothProps) => {
     <div className="detail-item">
       <Box className={classes.root}>
         <Box className={classes.header}>
+          {categoryList
+            .filter(clothsInfo => clothsInfo.categoryNum === cloth.category)
+            .map(({ categoryNum, categoryName }: categoryInfo) => (
+              <Box className={classes.category} key={categoryNum}>
+                {categoryNum === cloth.category ? categoryName : null}
+              </Box>
+            ))}
+          <Box py={2}> > </Box>
           <Box className={classes.headerBrand}>{cloth.brand}</Box>
         </Box>
         <Box className={classes.contents}>
@@ -90,9 +130,16 @@ const ClothsDetail = ({ cloth }: ClothProps) => {
           </Box>
           <Box className={classes.infoBox}>
             <Box className={classes.box}>
-              <Typography variant="h4" className={classes.detail}>
+              <Typography variant="h4" className={classes.detailHeader}>
                 Detail
               </Typography>
+              <Box className={classes.detailContents}>
+                All the colors and personalities you can’t see right through
+                what I truly am you’re hurting me without noticing I’m so, so
+                broke like someone just robbed me I’m no invincible I have much
+                memories of getting more weaker I know I’m not loveable but you
+                know what you’d have to say
+              </Box>
             </Box>
             <hr />
             <Box className={classes.title}> {cloth.title} </Box>

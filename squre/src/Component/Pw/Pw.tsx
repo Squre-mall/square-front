@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TestPost from "../TestPost";
@@ -15,7 +14,7 @@ const Pw = () => {
   const [postOpen, setPostOpen] = useState(false);
 
   const handleModal = () => {
-    pw === checkPw ? setPostOpen(true) : setPostOpen(false);
+    pw === checkPw ? setPostOpen(!postOpen) : setOpen(!open);
   };
 
   return (
@@ -27,7 +26,6 @@ const Pw = () => {
       >
         <DialogTitle id="form-dialog-title">Only Access Admin</DialogTitle>
         <DialogContent>
-          <DialogContentText>Input password</DialogContentText>
           <TextField
             id="standard-textarea"
             label="password"
@@ -36,6 +34,7 @@ const Pw = () => {
             margin="dense"
             value={pw}
             onChange={e => setPw(e.target.value)}
+            autoFocus
           />
         </DialogContent>
         <DialogActions>

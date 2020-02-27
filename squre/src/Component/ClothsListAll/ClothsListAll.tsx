@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     padding: "10px 10px 30px 20px"
   },
   listCount: {
-    paddingTop: "1.7em"
+    paddingTop: 23
   }
 });
 
@@ -42,7 +42,7 @@ const ClothsListAll = ({ cloths }: ClothsProps) => {
         <Typography variant="h4" className={classes.title}>
           All
         </Typography>
-        <Box className={classes.listCount}>( {cloths.length} )</Box>
+        <Box className={classes.listCount}>({cloths.length})</Box>
       </Box>
       <Box className={classes.itemBox}>
         {cloths.map(
