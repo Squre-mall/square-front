@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ClothsDetail from "../../Component/ClothsDetail";
+import Loading from "../../Component/Loading";
 
 type ClothsType = {
   id: number;
@@ -41,7 +42,7 @@ const DetailContainer = ({ id }) => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) return <div> data loading...</div>;
+  if (loading) return <Loading />;
   if (error) return <div> error ! </div>;
   if (!cloth) return null;
 

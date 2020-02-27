@@ -16,7 +16,6 @@ type ClothsType = {
   id: number;
   brand: string;
   title: string;
-  date: string;
   clothImg: any;
   price: string;
   category: number;
@@ -51,22 +50,15 @@ const useStyles = makeStyles({
 
 const TestPost = () => {
   const [open, setOpen] = useState(true);
-  const [error, setError] = useState(null);
   const [brand, setBrand] = useState("");
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
   const [clothImg, setClothImg] = useState("");
   const [price, setPrice] = useState();
   const [category, setCategory] = useState("");
   const classes = useStyles();
 
   const fetchClothsPost = cloths => {
-    console.log({ cloths });
-    try {
-      axios.post("https://squaremall.pythonanywhere.com/cloth/", cloths);
-    } catch (e) {
-      setError(e);
-    }
+    axios.post("https://squaremall.pythonanywhere.com/cloth/", cloths);
   };
 
   const handleClose = () => {
@@ -77,16 +69,15 @@ const TestPost = () => {
     const cloths = {
       brand: brand,
       title: title,
-      date: date,
       clothImg: clothImg,
       price: price,
       category: parseInt(category)
     };
     console.log(cloths);
+
     fetchClothsPost(cloths);
     setOpen(false);
   };
-  if (error) return <div>error!</div>;
 
   return (
     <div>
@@ -107,7 +98,7 @@ const TestPost = () => {
             <TextField
               id="standard-textarea"
               label="Brand"
-              placeholder="Brande"
+              placeholder="Brand"
               multiline
               value={brand}
               onChange={e => setBrand(e.target.value)}
@@ -120,15 +111,6 @@ const TestPost = () => {
               multiline
               value={title}
               onChange={e => setTitle(e.target.value)}
-              className={classes.textField}
-            />
-            <TextField
-              id="standard-textarea"
-              label="Date"
-              placeholder="Date"
-              multiline
-              value={date}
-              onChange={e => setDate(e.target.value)}
               className={classes.textField}
             />
             <TextField

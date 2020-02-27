@@ -5,6 +5,7 @@ import ClothsListOuter from "../../Component/ClothsListOuter";
 import ClothsListTop from "../../Component/ClothsListTop";
 import ClothsListBottom from "../../Component/ClothsListBottom";
 import ClothsListAll from "../../Component/ClothsListAll";
+import Loading from "../../Component/Loading";
 
 type ClothsType = {
   id: number;
@@ -43,7 +44,7 @@ const ClothsContainer = () => {
     fetchCloths();
   }, []);
 
-  if (loading) return <div> data loading...</div>;
+  if (loading) return <Loading />;
   if (error) return <div> error ! </div>;
   if (!cloths) return null;
 

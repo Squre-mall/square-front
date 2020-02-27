@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     padding: "10px 10px 30px 20px"
   },
   listCount: {
-    paddingTop: "1.7em"
+    paddingTop: 23
   }
 });
 
