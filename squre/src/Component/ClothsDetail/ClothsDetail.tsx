@@ -88,7 +88,7 @@ const useStyles = makeStyles({
     width: "100%"
   },
   detailContents: {
-    padding: "0 30px",
+    padding: 30,
     lineHeight: "30px"
   },
   subBox: {
@@ -148,7 +148,11 @@ const ClothsDetail = ({ cloth }: ClothProps) => {
             <Box className={classes.subBox}>
               <Box className={classes.price}> {cloth.price} </Box>
               <Box className={classes.buy}>
-                <IconButton color="primary" aria-label="add to shopping cart">
+                <IconButton
+                  color="primary"
+                  aria-label="add to shopping cart"
+                  onClick={() => alert("개발중임니다...")}
+                >
                   <AddShoppingCartIcon />
                 </IconButton>
               </Box>

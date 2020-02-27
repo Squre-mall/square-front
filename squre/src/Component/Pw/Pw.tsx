@@ -13,6 +13,10 @@ const Pw = () => {
   const [checkPw] = useState("square!");
   const [postOpen, setPostOpen] = useState(false);
 
+  const handleClose = () => {
+    setOpen(!open);
+    window.location.reload();
+  };
   const handleModal = () => {
     pw === checkPw ? setPostOpen(!postOpen) : setOpen(!open);
   };
@@ -38,7 +42,7 @@ const Pw = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(!open)} color="primary">
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleModal} color="primary">

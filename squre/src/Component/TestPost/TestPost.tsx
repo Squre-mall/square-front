@@ -50,7 +50,6 @@ const useStyles = makeStyles({
 
 const TestPost = () => {
   const [open, setOpen] = useState(true);
-  const [error, setError] = useState(null);
   const [brand, setBrand] = useState("");
   const [title, setTitle] = useState("");
   const [clothImg, setClothImg] = useState("");
@@ -59,11 +58,7 @@ const TestPost = () => {
   const classes = useStyles();
 
   const fetchClothsPost = cloths => {
-    try {
-      axios.post("https://squaremall.pythonanywhere.com/cloth/", cloths);
-    } catch (e) {
-      setError(e);
-    }
+    axios.post("https://squaremall.pythonanywhere.com/cloth/", cloths);
   };
 
   const handleClose = () => {
@@ -83,7 +78,6 @@ const TestPost = () => {
     fetchClothsPost(cloths);
     setOpen(false);
   };
-  if (error) return <div>error!</div>;
 
   return (
     <div>
