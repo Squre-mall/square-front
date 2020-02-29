@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import squareIcon from "./square-icon.png";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import IconButton from "@material-ui/core/IconButton";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 const useStyles = makeStyles({
   img: {
@@ -50,10 +51,11 @@ const useStyles = makeStyles({
     fontWeight: "bold"
   },
   footer: {},
-  adminLink: {
-    textDecoration: "none",
-    fontSize: 15,
-    color: "#D8D8D8"
+  link: {
+    textDecoration: "none"
+  },
+  button: {
+    padding: "5px 10px"
   }
 });
 
@@ -107,10 +109,28 @@ const Menu = () => {
         <div className={classes.footer}>
           <a
             href="http://squaremall.pythonanywhere.com/admin/"
-            className={classes.adminLink}
+            className={classes.link}
           >
-            <IconButton aria-label="move the admin page">
+            <IconButton
+              aria-label="move the admin page"
+              className={classes.button}
+              size="small"
+            >
               <SupervisorAccountIcon />
+            </IconButton>
+          </a>
+          <a
+            href="https://github.com/Squre-mall"
+            className={classes.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <IconButton
+              aria-label="move the our page"
+              className={classes.button}
+              size="small"
+            >
+              <GitHubIcon />
             </IconButton>
           </a>
         </div>
