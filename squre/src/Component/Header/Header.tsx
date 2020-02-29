@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import Pw from "../Pw";
 
 const useStyles = makeStyles({
   header: {
@@ -21,7 +20,6 @@ const useStyles = makeStyles({
 });
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
 
   return (
@@ -37,16 +35,6 @@ const Header = () => {
           <Button variant="outlined" size="medium" disableElevation>
             JOIN US
           </Button>
-        </Box>
-        <Box className={classes.button}>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setOpen(!open)}
-          >
-            add
-          </Button>
-          {open ? <Pw /> : ""}
         </Box>
       </Box>
     </div>
