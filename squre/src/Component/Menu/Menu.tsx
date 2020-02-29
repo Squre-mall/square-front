@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import squareIcon from "./square-icon.png";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles({
   img: {
@@ -47,10 +49,11 @@ const useStyles = makeStyles({
     fontSize: 15,
     fontWeight: "bold"
   },
-  footer: {
-    padding: "10px 10px",
+  footer: {},
+  adminLink: {
+    textDecoration: "none",
     fontSize: 15,
-    lineHeight: "20px"
+    color: "#D8D8D8"
   }
 });
 
@@ -102,7 +105,14 @@ const Menu = () => {
         </Link>
         <hr />
         <div className={classes.footer}>
-          <div> Made by Lee Hosu </div>
+          <a
+            href="http://squaremall.pythonanywhere.com/admin/"
+            className={classes.adminLink}
+          >
+            <IconButton aria-label="move the admin page">
+              <SupervisorAccountIcon />
+            </IconButton>
+          </a>
         </div>
       </Box>
     </div>
