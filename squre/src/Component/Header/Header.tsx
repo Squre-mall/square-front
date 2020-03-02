@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import SerchInput from "../SearchInput";
 
 const useStyles = makeStyles({
   header: {
@@ -13,6 +14,9 @@ const useStyles = makeStyles({
   buttonBox: {
     display: "flex",
     paddingRight: 150
+  },
+  input: {
+    padding: "25px 5px"
   },
   button: {
     padding: "30px 5px"
@@ -26,6 +30,9 @@ const Header = () => {
     <div className={classes.header}>
       <Box style={{ flex: 1 }} />
       <Box style={{ paddingRight: "11em", display: "flex" }}>
+        <Box className={classes.input}>
+          <SerchInput />
+        </Box>
         <Box className={classes.button}>
           <Button variant="outlined" size="medium" disableElevation>
             LOG IN

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../../Component/Loading";
 import ClothsBrand from "../../Component/ClothsBrand";
+import SearchError from "../../Component/SearchError";
 
 type ClothsType = {
   id: number;
@@ -51,7 +52,7 @@ const BrandContainer = ({ brand }) => {
 
   return (
     <div>
-      <ClothsBrand cloths={cloths} />
+      {cloths.length === 0 ? <SearchError /> : <ClothsBrand cloths={cloths} />}
     </div>
   );
 };
