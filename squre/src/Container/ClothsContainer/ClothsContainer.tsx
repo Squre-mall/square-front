@@ -34,7 +34,6 @@ const ClothsContainer = () => {
 
   const fetchCloths = async () => {
     try {
-      setCloths(null);
       setError(null);
       setLoading(true);
 

@@ -38,24 +38,30 @@ const useStyles = makeStyles({
 });
 
 const ClothsListAll = ({ cloths }: ClothsProps) => {
+  const classes = useStyles();
   const start = 0;
   const [items, setItems] = useState(20);
-  const classes = useStyles();
 
-const onScroll = () => {
-    if (
-      document.documentElement.scrollTop +
-        document.documentElement.clientHeight ===
-      document.documentElement.scrollHeight
-    ) {
-      setItems(items+20);
+  const onScroll = () => {
+    const { innerHeight } = window;
+    const { scrollHeight } = document.body;
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+
+    if (scrollHeight - innerHeight - scrollTop < 100) {
+      items === cloths.length ? setItems(cloths.length) : setItems(items + 20);
     }
   };
-    useEffect(() => {
+
+  useEffect(() => {
     window.addEventListener("scroll", onScroll);
-    // 스크롤 이벤트는 꼭 삭제해줍니다!
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  });
+
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
 
   return (
     <div className="clothslist-all">

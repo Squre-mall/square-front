@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -39,6 +39,30 @@ const useStyles = makeStyles({
 
 const ClothsListBottom = ({ cloths }: ClothsProps) => {
   const classes = useStyles();
+  const start = 0;
+  const [items, setItems] = useState(20);
+
+  const onScroll = () => {
+    const { innerHeight } = window;
+    const { scrollHeight } = document.body;
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+
+    if (scrollHeight - innerHeight - scrollTop < 100) {
+      items === cloths.length ? setItems(cloths.length) : setItems(items + 20);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  });
+
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
+
   return (
     <div className="clothslist-bottom">
       <Box className={classes.titleBox}>
@@ -54,6 +78,7 @@ const ClothsListBottom = ({ cloths }: ClothsProps) => {
       <Box className={classes.itemBox}>
         {cloths
           .filter(clothsInfo => clothsInfo.category === "bottom")
+          .slice(start, items)
           .map(
             ({
               id,
