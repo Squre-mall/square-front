@@ -143,10 +143,12 @@ const ClothsDetail = ({
               </Box>
             </Box>
             <Box className={classes.table}>
-              <Box className={classes.tableKey}> 제품명 / 성별 </Box>
-              <Box className={classes.tableValue}>
-                {title} / {gender}
-              </Box>
+              <Box className={classes.tableKey}> 제품명 </Box>
+              <Box className={classes.tableValue}>{title}</Box>
+            </Box>
+            <Box className={classes.table}>
+              <Box className={classes.tableKey}> 성별 </Box>
+              <Box className={classes.tableValue}>{gender}</Box>
             </Box>
             <hr />
             <Box className={classes.subBox}>
