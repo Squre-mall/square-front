@@ -44,8 +44,8 @@ const useStyles = makeStyles({
   },
   imgBox: {
     padding: 10,
-    width: 600,
-    height: 700
+    width: 500,
+    height: 600
   },
   img: {
     width: "100%",
@@ -53,8 +53,8 @@ const useStyles = makeStyles({
   },
   infoBox: {
     padding: 20,
-    width: 600,
-    height: 700
+    width: 550,
+    height: 600
   },
   box: {
     width: "100%",
@@ -115,7 +115,14 @@ const ClothsDetail = ({
             </Link>
           </Box>
           <Box py={2}> > </Box>
-          <Box className={classes.headerBrand}>{brand}</Box>
+          <Box className={classes.headerBrand}>
+            <Link
+              to={`/square-front/brand/${brand}`}
+              style={{ color: "inherit", textDecoration: "inherit" }}
+            >
+              {brand}
+            </Link>
+          </Box>
         </Box>
         <Box className={classes.contents}>
           <Box className={classes.imgBox}>

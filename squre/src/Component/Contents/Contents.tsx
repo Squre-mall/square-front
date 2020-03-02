@@ -5,6 +5,7 @@ import Notice from "../../pages/Notice";
 import Board from "../../pages/Board";
 import ClothsContainer from "../../Container/ClothsContainer";
 import Detail from "../../pages/Detail";
+import Brand from "../../pages/Brand";
 
 const useStyles = makeStyles({
   contents: {
@@ -22,6 +23,7 @@ const Contents = () => {
         <Route path="/square-front/Notice" component={Notice} />
         <Route path="/square-front/Board" component={Board} />
         <Route path="/square-front/detail/:id" component={Detail} />
+        <Route path="/square-front/brand/:brand" component={Brand} />
       </Switch>
     </div>
   );

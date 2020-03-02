@@ -28,22 +28,22 @@ const ClothsContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
-
-  const fetchCloths = async () => {
-    try {
-      setError(null);
-      setLoading(true);
-
-      const response: ClothsResponse = await axios.get(clothsAPI);
-      setCloths(response.data);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
+  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
 
   useEffect(() => {
+    const fetchCloths = async () => {
+      try {
+        setError(null);
+        setLoading(true);
+
+        const response: ClothsResponse = await axios.get(clothsAPI);
+        setCloths(response.data);
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+
     fetchCloths();
   }, []);
 
