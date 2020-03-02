@@ -5,11 +5,12 @@ import Loading from "../../Component/Loading";
 
 type ClothsType = {
   id: number;
+  productNo: string;
   brand: string;
   title: string;
   description: string;
   clothImgUrl: string;
-  pageUrl: string;
+  gender: string;
   price: string;
   category: string;
 };
@@ -33,7 +34,7 @@ const DetailContainer = ({ id }) => {
         const response: ClothsResponse = await axios.get(
           `https://squaremall.pythonanywhere.com/cloth/`,
           {
-            params: { id }
+            params: { id: id }
           }
         );
         setCloth(response.data);
@@ -55,21 +56,24 @@ const DetailContainer = ({ id }) => {
       {cloth.map(
         ({
           id,
+          productNo,
           brand,
           title,
           description,
           clothImgUrl,
-          pageUrl,
           price,
+          gender,
           category
         }: ClothsType) => (
           <ClothsDetail
+            id={id}
             key={id}
+            productNo={productNo}
             brand={brand}
             title={title}
             description={description}
             clothImgUrl={clothImgUrl}
-            pageUrl={pageUrl}
+            gender={gender}
             price={price}
             category={category}
           />

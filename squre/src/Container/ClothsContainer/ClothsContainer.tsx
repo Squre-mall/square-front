@@ -17,8 +17,6 @@ type ClothsType = {
   price: string;
   gender: string;
   category: string;
-  created: string;
-  modified: string;
 };
 
 type ClothsResponse = {
