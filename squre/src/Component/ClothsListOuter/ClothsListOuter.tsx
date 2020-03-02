@@ -49,7 +49,7 @@ const ClothsListOuter = ({ cloths }: ClothsProps) => {
       (document.documentElement && document.documentElement.scrollTop) ||
       document.body.scrollTop;
 
-    if (scrollHeight - innerHeight - scrollTop < 100) {
+    if (scrollHeight - innerHeight - scrollTop < 150) {
       items === cloths.length ? setItems(cloths.length) : setItems(items + 20);
     }
   };
