@@ -6,12 +6,13 @@ import ClothsItem from "../ClothsItem";
 
 type ClothsType = {
   id: number;
+  productNo: string;
   brand: string;
   title: string;
   description: string;
   clothImgUrl: string;
-  pageUrl: string;
   price: string;
+  gender: string;
   category: string;
 };
 
@@ -54,22 +55,24 @@ const ClothsListTop = ({ cloths }: ClothsProps) => {
           .map(
             ({
               id,
+              productNo,
               brand,
               title,
               description,
               clothImgUrl,
-              pageUrl,
               price,
+              gender,
               category
             }: ClothsType) => (
               <ClothsItem
                 key={id}
                 id={id}
+                productNo={productNo}
                 brand={brand}
                 title={title}
                 description={description}
                 clothImgUrl={clothImgUrl}
-                pageUrl={pageUrl}
+                gender={gender}
                 price={price}
                 category={category}
               />

@@ -9,13 +9,16 @@ import Loading from "../../Component/Loading";
 
 type ClothsType = {
   id: number;
+  productNo: string;
   brand: string;
   title: string;
   description: string;
   clothImgUrl: string;
-  pageUrl: string;
   price: string;
+  gender: string;
   category: string;
+  created: string;
+  modified: string;
 };
 
 type ClothsResponse = {
@@ -26,29 +29,31 @@ const ClothsContainer = () => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
+
+  const fetchCloths = async () => {
+    try {
+      setCloths(null);
+      setError(null);
+      setLoading(true);
+
+      const response: ClothsResponse = await axios.get(clothsAPI);
+      setCloths(response.data);
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchCloths = async () => {
-      try {
-        setCloths(null);
-        setError(null);
-        setLoading(true);
-
-        const response: ClothsResponse = await axios.get(
-          "https://squaremall.pythonanywhere.com/cloth/"
-        );
-
-        setCloths(response.data);
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    };
     fetchCloths();
   }, []);
 
   if (loading) return <Loading />;
   if (error) return <div> error ! </div>;
   if (!cloths) return null;
+  console.log(cloths);
 
   return (
     <div className="cloths-list">

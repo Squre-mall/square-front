@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 
 type ClothsType = {
   id: number;
+  productNo: string;
   brand: string;
   title: string;
   description: string;
   clothImgUrl: string;
-  pageUrl: string;
   price: string;
+  gender: string;
   category: string;
 };
-
 const useStyles = makeStyles({
   clothItem: {
     textDecoration: "none"
@@ -67,12 +67,13 @@ const useStyles = makeStyles({
 
 const ClothsItem = ({
   id,
+  productNo,
   brand,
   title,
   description,
   clothImgUrl,
-  pageUrl,
   price,
+  gender,
   category
 }: ClothsType) => {
   const classes = useStyles();
