@@ -10,7 +10,7 @@ import Brand from "../../pages/Brand";
 const useStyles = makeStyles({
   contents: {
     flex: 9,
-    marginLeft: 320
+    marginLeft: 350
   }
 });
 

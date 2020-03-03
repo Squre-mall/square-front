@@ -18,6 +18,7 @@ const useStyles = makeStyles({
 const SerchInput = () => {
   const [text, setText] = useState("");
   const classes = useStyles();
+  const ENTER = 13;
 
   return (
     <div className={classes.root}>
@@ -34,6 +35,7 @@ const SerchInput = () => {
           <Link
             to={`/square-front/brand/${text}`}
             style={{ color: "inherit", textDecoration: "inherit" }}
+            onClick={e => setText("")}
           >
             <SearchIcon />
           </Link>

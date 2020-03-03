@@ -59,10 +59,6 @@ const ClothsListAll = ({ cloths }: ClothsProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   });
 
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
-
   return (
     <div className="clothslist-all">
       <Box className={classes.titleBox}>
