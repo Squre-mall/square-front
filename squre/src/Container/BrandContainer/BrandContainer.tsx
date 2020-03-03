@@ -3,6 +3,7 @@ import axios from "axios";
 import Loading from "../../Component/Loading";
 import ClothsBrand from "../../Component/ClothsBrand";
 import SearchError from "../../Component/SearchError";
+import ClothsError from "../../Component/ClothsError";
 
 type ClothsType = {
   id: number;
@@ -47,7 +48,7 @@ const BrandContainer = ({ brand }) => {
   }, [brand]);
 
   if (loading) return <Loading />;
-  if (error) return <div> error ! </div>;
+  if (error) return <ClothsError text="Brand Search" />;
   if (!cloths) return null;
 
   return (
