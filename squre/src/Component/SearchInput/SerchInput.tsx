@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-// import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 
@@ -18,7 +17,6 @@ const useStyles = makeStyles({
 const SerchInput = () => {
   const [text, setText] = useState("");
   const classes = useStyles();
-  const ENTER = 13;
 
   return (
     <div className={classes.root}>
@@ -35,7 +33,7 @@ const SerchInput = () => {
           <Link
             to={`/square-front/brand/${text}`}
             style={{ color: "inherit", textDecoration: "inherit" }}
-            onClick={e => setText("")}
+            onClick={() => setText("")}
           >
             <SearchIcon />
           </Link>
