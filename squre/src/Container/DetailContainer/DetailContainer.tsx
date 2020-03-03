@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ClothsDetail from "../../Component/ClothsDetail";
 import Loading from "../../Component/Loading";
+import ClothsError from "../../Component/ClothsError";
 
 type ClothsType = {
   id: number;
@@ -45,7 +46,7 @@ const DetailContainer = ({ id }) => {
   }, [id]);
 
   if (loading) return <Loading />;
-  if (error) return <div> error ! </div>;
+  if (error) return <ClothsError text="Product Detail" />;
   if (!cloth) return null;
 
   return (

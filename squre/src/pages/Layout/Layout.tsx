@@ -3,7 +3,6 @@ import Header from "../../Component/Header";
 import Menu from "../../Component/Menu";
 import Contents from "../../Component/Contents";
 import { makeStyles } from "@material-ui/core/styles";
-
 const useStyles = makeStyles({
   body: {
     display: "flex"
