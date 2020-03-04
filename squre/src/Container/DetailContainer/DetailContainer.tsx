@@ -61,7 +61,7 @@ const DetailContainer = ({ id }) => {
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Product Detail" />;
   if (!cloth) return null;
-
+  console.log(cloth);
   return (
     <div>
       {cloth.map(

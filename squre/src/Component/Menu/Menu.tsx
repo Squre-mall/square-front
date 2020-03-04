@@ -75,17 +75,17 @@ const Menu = () => {
             All
           </Typography>
         </Link>
-        <Link to="/square-front/outer" className={classes.menuItem}>
+        <Link to={`/square-front/outer`} className={classes.menuItem}>
           <Typography className={classes.titleMenu} variant="h3">
             Outer
           </Typography>
         </Link>
-        <Link to="/square-front/top" className={classes.menuItem}>
+        <Link to={`/square-front/top`} className={classes.menuItem}>
           <Typography className={classes.titleMenu} variant="h3">
             Top
           </Typography>
         </Link>
-        <Link to="/square-front/bottom" className={classes.menuItem}>
+        <Link to={`/square-front/bottom`} className={classes.menuItem}>
           <Typography className={classes.titleMenu} variant="h3">
             Bottom
           </Typography>
@@ -98,7 +98,7 @@ const Menu = () => {
             </Typography>
           </Box>
         </Link>
-        <Link to="/square-front/Board" className={classes.menuItem}>
+        <Link to="/square-front/board" className={classes.menuItem}>
           <Box className={classes.listItem}>
             <Typography className={classes.iconMenu} variant="h3">
               Q&A

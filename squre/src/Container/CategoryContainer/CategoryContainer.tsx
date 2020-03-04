@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ClothsListAll from "../../Component/ClothsListAll";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
+import ClothsListAll from "../../Component/ClothsListAll";
 
 type ClothsPriceType = {
   original_price: string;
@@ -33,12 +33,12 @@ type ClothsDataType = {
   data: ClothsResponseType;
 };
 
-const ClothsContainer = () => {
-  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
+const CategoryContainer = ({ category }) => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
+
+  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
 
   useEffect(() => {
     const fetchCloths = async () => {
@@ -46,7 +46,7 @@ const ClothsContainer = () => {
         setError(null);
         setLoading(true);
         const response: ClothsDataType = await axios.get(clothsAPI, {
-          params: { page: page }
+          params: { category: category }
         });
         setCloths(response.data.results);
       } catch (e) {
@@ -55,7 +55,7 @@ const ClothsContainer = () => {
       setLoading(false);
     };
     fetchCloths();
-  }, [page]);
+  }, [category]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;
@@ -64,9 +64,13 @@ const ClothsContainer = () => {
 
   return (
     <div className="cloths-list">
-      <ClothsListAll cloths={cloths} title="All" />
+      {cloths.length === 0 ? (
+        <ClothsError text="category" />
+      ) : (
+        <ClothsListAll cloths={cloths} title={category} />
+      )}
     </div>
   );
 };
 
-export default ClothsContainer;
+export default CategoryContainer;
