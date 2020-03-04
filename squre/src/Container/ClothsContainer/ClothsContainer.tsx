@@ -8,20 +8,33 @@ import ClothsListAll from "../../Component/ClothsListAll";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
 
+type ClothsPriceType = {
+  original_price: string;
+  discounted_price: string;
+};
+
 type ClothsType = {
   id: number;
+  cloth_detail_musinsa: number;
   productNo: string;
   brand: string;
   title: string;
-  description: string;
-  clothImgUrl: string;
-  price: string;
-  gender: string;
+  clothImgSuffix: string;
+  price: ClothsPriceType;
   category: string;
+  created: string;
+  modified: string;
 };
 
-type ClothsResponse = {
-  data: ClothsType[];
+type ClothsResponseType = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ClothsType[];
+};
+
+type ClothsDataType = {
+  data: ClothsResponseType;
 };
 
 const ClothsContainer = () => {
@@ -29,22 +42,21 @@ const ClothsContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
+  const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
+
+  const fetchCloths = async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      const response: ClothsDataType = await axios.get(clothsAPI);
+      setCloths(response.data.results);
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchCloths = async () => {
-      try {
-        setError(null);
-        setLoading(true);
-
-        const response: ClothsResponse = await axios.get(clothsAPI);
-        setCloths(response.data);
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    };
-
     fetchCloths();
   }, []);
 

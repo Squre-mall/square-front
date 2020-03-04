@@ -4,20 +4,33 @@ import ClothsDetail from "../../Component/ClothsDetail";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
 
+type ClothsPriceType = {
+  original_price: string;
+  discounted_price: string;
+};
+
 type ClothsType = {
   id: number;
+  cloth_detail_musinsa: number;
   productNo: string;
   brand: string;
   title: string;
-  description: string;
-  clothImgUrl: string;
-  gender: string;
-  price: string;
+  clothImgSuffix: string;
+  price: ClothsPriceType;
   category: string;
+  created: string;
+  modified: string;
 };
 
-type ClothsResponse = {
-  data: ClothsType[];
+type ClothsResponseType = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ClothsType[];
+};
+
+type ClothsDataType = {
+  data: ClothsResponseType;
 };
 
 const DetailContainer = ({ id }) => {
@@ -33,10 +46,10 @@ const DetailContainer = ({ id }) => {
         setError(null);
         setLoading(true);
 
-        const response: ClothsResponse = await axios.get(detailAPI, {
+        const response: ClothsDataType = await axios.get(detailAPI, {
           params: { id: id }
         });
-        setCloth(response.data);
+        setCloth(response.data.results);
       } catch (e) {
         setError(e);
       }
@@ -54,25 +67,24 @@ const DetailContainer = ({ id }) => {
       {cloth.map(
         ({
           id,
+          cloth_detail_musinsa,
           productNo,
           brand,
           title,
-          description,
-          clothImgUrl,
+          clothImgSuffix,
           price,
-          gender,
           category
         }: ClothsType) => (
           <ClothsDetail
-            id={id}
             key={id}
+            id={id}
+            cloth_detail_musinsa={cloth_detail_musinsa}
             productNo={productNo}
             brand={brand}
             title={title}
-            description={description}
-            clothImgUrl={clothImgUrl}
-            gender={gender}
-            price={price}
+            clothImgSuffix={clothImgSuffix}
+            original_price={price.original_price}
+            discounted_price={price.discounted_price}
             category={category}
           />
         )

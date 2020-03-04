@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 
 type ClothsType = {
   id: number;
+  cloth_detail_musinsa: number;
   productNo: string;
   brand: string;
   title: string;
-  description: string;
-  clothImgUrl: string;
-  price: string;
-  gender: string;
+  clothImgSuffix: string;
+  original_price: string;
+  discounted_price: string;
   category: string;
 };
+
 const useStyles = makeStyles({
   clothItem: {
     textDecoration: "none"
@@ -67,13 +68,13 @@ const useStyles = makeStyles({
 
 const ClothsItem = ({
   id,
+  cloth_detail_musinsa,
   productNo,
   brand,
   title,
-  description,
-  clothImgUrl,
-  price,
-  gender,
+  clothImgSuffix,
+  original_price,
+  discounted_price,
   category
 }: ClothsType) => {
   const classes = useStyles();
@@ -86,7 +87,7 @@ const ClothsItem = ({
               <Box className={classes.clothsImgBox}>
                 <img
                   alt="cloths"
-                  src={clothImgUrl}
+                  src={`https://image.msscdn.net/images/goods_img/${clothImgSuffix}`}
                   className={classes.clothsImg}
                 />
               </Box>
@@ -98,7 +99,7 @@ const ClothsItem = ({
               </Box>
               <Box className={classes.title}>{title}</Box>
               <Box className={classes.infoBox}>
-                <Box className={classes.price}>{price} 원</Box>
+                <Box className={classes.price}>{original_price} 원</Box>
               </Box>
             </Box>
           </Paper>

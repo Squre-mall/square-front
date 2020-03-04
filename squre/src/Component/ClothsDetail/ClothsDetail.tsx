@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 
 type ClothsType = {
   id: number;
+  cloth_detail_musinsa: number;
   productNo: string;
   brand: string;
   title: string;
-  description: string;
-  clothImgUrl: string;
-  gender: string;
-  price: string;
+  clothImgSuffix: string;
+  original_price: string;
+  discounted_price: string;
   category: string;
 };
 
@@ -88,13 +88,14 @@ const useStyles = makeStyles({
 });
 
 const ClothsDetail = ({
+  id,
+  cloth_detail_musinsa,
   productNo,
   brand,
   title,
-  description,
-  clothImgUrl,
-  price,
-  gender,
+  clothImgSuffix,
+  original_price,
+  discounted_price,
   category
 }: ClothsType) => {
   const classes = useStyles();
@@ -126,14 +127,18 @@ const ClothsDetail = ({
         </Box>
         <Box className={classes.contents}>
           <Box className={classes.imgBox}>
-            <img src={clothImgUrl} alt={title} className={classes.img} />
+            <img
+              src={`https://image.msscdn.net/images/goods_img/${clothImgSuffix}`}
+              alt={title}
+              className={classes.img}
+            />
           </Box>
           <Box className={classes.infoBox}>
             <Box className={classes.box}>
               <Typography variant="h4" className={classes.detailHeader}>
                 Detail
               </Typography>
-              <Box className={classes.detailContents}>{description}</Box>
+              <Box className={classes.detailContents}> </Box>
             </Box>
             <hr />
             <Box className={classes.table}>
@@ -148,11 +153,11 @@ const ClothsDetail = ({
             </Box>
             <Box className={classes.table}>
               <Box className={classes.tableKey}> 성별 </Box>
-              <Box className={classes.tableValue}>{gender}</Box>
+              <Box className={classes.tableValue}> </Box>
             </Box>
             <hr />
             <Box className={classes.subBox}>
-              <Box className={classes.price}> {price} 원 </Box>
+              <Box className={classes.price}> {original_price} </Box>
               <Box className={classes.buy}>
                 <a
                   href={`https://store.musinsa.com/app/product/detail/${productNo}`}

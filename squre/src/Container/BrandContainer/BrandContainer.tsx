@@ -5,20 +5,33 @@ import ClothsBrand from "../../Component/ClothsBrand";
 import SearchError from "../../Component/SearchError";
 import ClothsError from "../../Component/ClothsError";
 
+type ClothsPriceType = {
+  original_price: string;
+  discounted_price: string;
+};
+
 type ClothsType = {
   id: number;
+  cloth_detail_musinsa: number;
   productNo: string;
   brand: string;
   title: string;
-  description: string;
-  clothImgUrl: string;
-  price: string;
-  gender: string;
+  clothImgSuffix: string;
+  price: ClothsPriceType;
   category: string;
+  created: string;
+  modified: string;
 };
 
-type ClothsResponse = {
-  data: ClothsType[];
+type ClothsResponseType = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ClothsType[];
+};
+
+type ClothsDataType = {
+  data: ClothsResponseType;
 };
 
 const BrandContainer = ({ brand }) => {
@@ -35,10 +48,10 @@ const BrandContainer = ({ brand }) => {
         setError(null);
         setLoading(true);
 
-        const response: ClothsResponse = await axios.get(detailAPI, {
+        const response: ClothsDataType = await axios.get(detailAPI, {
           params: { brand: brand }
         });
-        setCloths(response.data);
+        setCloths(response.data.results);
       } catch (e) {
         setError(e);
       }
@@ -50,6 +63,7 @@ const BrandContainer = ({ brand }) => {
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Brand Search" />;
   if (!cloths) return null;
+  console.log(cloths);
 
   return (
     <div>
