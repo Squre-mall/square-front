@@ -6,6 +6,7 @@ import Board from "../../pages/Board";
 import ClothsContainer from "../../Container/ClothsContainer";
 import Detail from "../../pages/Detail";
 import Brand from "../../pages/Brand";
+import Category from "../../pages/Category";
 
 const useStyles = makeStyles({
   contents: {
@@ -18,12 +19,13 @@ const Contents = () => {
   const classes = useStyles();
   return (
     <div className={classes.contents}>
-      <ClothsContainer />
       <Switch>
-        <Route path="/square-front/Notice" component={Notice} />
-        <Route path="/square-front/Board" component={Board} />
-        <Route path="/square-front/detail/:id" component={Detail} />
-        <Route path="/square-front/brand/:brand" component={Brand} />
+        <Route exact path="/square-front/" component={ClothsContainer} />
+        <Route exact path="/square-front/:category" component={Category} />
+        <Route exact path="/square-front/notice" component={Notice} />
+        <Route exact path="/square-front/board" component={Board} />
+        <Route exact path="/square-front/detail/:id" component={Detail} />
+        <Route exact path="/square-front/brand/:brand" component={Brand} />
       </Switch>
     </div>
   );
