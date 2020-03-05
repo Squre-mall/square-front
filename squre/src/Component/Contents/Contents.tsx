@@ -21,7 +21,11 @@ const Contents = () => {
     <div className={classes.contents}>
       <Switch>
         <Route exact path="/square-front/" component={ClothsContainer} />
-        <Route exact path="/square-front/:category" component={Category} />
+        <Route
+          exact
+          path="/square-front/category/:category"
+          component={Category}
+        />
         <Route exact path="/square-front/notice" component={Notice} />
         <Route exact path="/square-front/board" component={Board} />
         <Route exact path="/square-front/detail/:id" component={Detail} />
