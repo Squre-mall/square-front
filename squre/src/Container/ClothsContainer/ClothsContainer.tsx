@@ -6,6 +6,7 @@ import ClothsError from "../../Component/ClothsError";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 type ClothsPriceType = {
   original_price: string;
@@ -38,9 +39,17 @@ type ClothsDataType = {
 
 
 const useStyles = makeStyles({
-  button: {
-    textAlign :"right",
-    padding : "80px 300px"
+  buttonBox: {
+    padding : 50
+  },
+  buttonUp :{
+    float : "right",
+    paddingRight : 200,
+    paddingBottom : 50
+    },
+  buttonDown:{
+    float : "left",
+    paddingBottom : 50
   }
 });
 
@@ -50,6 +59,8 @@ const ClothsContainer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page,setPage] = useState(1);
+  const [next,setNext] = useState();
+  const [prev, setPrev] = useState();
   const classes = useStyles();
 
   useEffect(() => {
@@ -63,6 +74,8 @@ const ClothsContainer = () => {
         });
 
         setCloths(response.data.results);
+        setNext(response.data.next);
+        setPrev(response.data.previous);
       } catch (e) {
         setError(e);
       }
@@ -82,10 +95,20 @@ const ClothsContainer = () => {
   return (
     <div className="cloths-list">
       <ClothsListAll cloths={cloths} title="All" />
-      <div className = {classes.button}>
-        <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page+1)} >
-          <ArrowForwardIosIcon />
-        </IconButton>
+      <div className = {classes.buttonBox}>
+      {prev === null ? " " : (<div className = {classes.buttonDown} >
+          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page-1)} >
+            <ArrowBackIosIcon />
+          </IconButton>
+        </div>)
+        }
+        {next === null ? " " : (
+        <div className = {classes.buttonUp}>
+          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page+1)} >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </div>
+        )}
       </div>
     </div>
   );
