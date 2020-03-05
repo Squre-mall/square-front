@@ -3,6 +3,9 @@ import axios from "axios";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
 import ClothsListAll from "../../Component/ClothsListAll";
+import { makeStyles } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 type ClothsPriceType = {
   original_price: string;
@@ -33,12 +36,20 @@ type ClothsDataType = {
   data: ClothsResponseType;
 };
 
+const useStyles = makeStyles({
+  button: {
+    textAlign :"right",
+    padding : "80px 300px"
+  }
+});
+
 const CategoryContainer = ({ category }) => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [page, setPage] = useState(1);
   const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
+  const classes = useStyles();
 
   useEffect(() => {
     const fetchCloths = async () => {
@@ -46,7 +57,7 @@ const CategoryContainer = ({ category }) => {
         setError(null);
         setLoading(true);
         const response: ClothsDataType = await axios.get(clothsAPI, {
-          params: { category: category }
+          params: { category: category,page : page }
         });
         setCloths(response.data.results);
       } catch (e) {
@@ -55,20 +66,24 @@ const CategoryContainer = ({ category }) => {
       setLoading(false);
     };
     fetchCloths();
-  }, [category]);
+  }, [category,page]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;
   if (!cloths) return null;
-  console.log(cloths);
-
+  
   return (
     <div className="cloths-list">
       {cloths.length === 0 ? (
         <ClothsError text="category" />
       ) : (
         <ClothsListAll cloths={cloths} title={category} />
-      )}
+       )}
+        <div className = {classes.button}>
+          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page+1)} >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </div>
     </div>
   );
 };
