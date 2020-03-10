@@ -99,7 +99,7 @@ const ClothsItem = ({
               </Box>
               <Box className={classes.title}>{title}</Box>
               <Box className={classes.infoBox}>
-                <Box className={classes.price}>{original_price} 원</Box>
+                <Box className={classes.price}>{original_price}</Box>
               </Box>
             </Box>
           </Paper>

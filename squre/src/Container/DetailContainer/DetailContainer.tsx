@@ -33,11 +33,35 @@ type ClothsDataType = {
   data: ClothsResponseType;
 };
 
+type DetailType = {
+  cloth: number;
+  description: string;
+  season: string;
+  gender: string;
+  monthlyPopularity: string;
+  detailImageUrlList: string;
+  color: string;
+  importation: string;
+  manufacturingYM: string;
+  material: string;
+  sizeNweight: string;
+  manufacturer: string;
+  manufactured: string;
+  asdirector: string;
+  precautions: string;
+  warrantyBasis: string;
+};
+
+type DetailResponseType = {
+  data: DetailType[];
+};
+
 const DetailContainer = ({ id }) => {
   const [cloth, setCloth] = useState();
+  const [detail, setDetail] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const detailAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
+  const clothAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
 
   useEffect(() => {
     const fetchClothsDetail = async () => {
@@ -46,49 +70,49 @@ const DetailContainer = ({ id }) => {
         setError(null);
         setLoading(true);
 
-        const response: ClothsDataType = await axios.get(detailAPI, {
+        const response_cloth: ClothsDataType = await axios.get(clothAPI, {
           params: { id: id }
         });
-        setCloth(response.data.results);
+
+        const respone_detail: DetailResponseType = await axios.get(
+          `http://squaremall.pythonanywhere.com/cloth/detail/${id}`
+        );
+
+        setCloth(response_cloth.data.results);
+        setDetail(respone_detail.data);
       } catch (e) {
         setError(e);
       }
       setLoading(false);
     };
+
     fetchClothsDetail();
   }, [id]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Product Detail" />;
   if (!cloth) return null;
-  console.log(cloth);
+  cloth.push(detail);
+
   return (
     <div>
-      {cloth.map(
-        ({
-          id,
-          cloth_detail_musinsa,
-          productNo,
-          brand,
-          title,
-          clothImgSuffix,
-          price,
-          category
-        }: ClothsType) => (
-          <ClothsDetail
-            key={id}
-            id={id}
-            cloth_detail_musinsa={cloth_detail_musinsa}
-            productNo={productNo}
-            brand={brand}
-            title={title}
-            clothImgSuffix={clothImgSuffix}
-            original_price={price.original_price}
-            discounted_price={price.discounted_price}
-            category={category}
-          />
-        )
-      )}
+      <ClothsDetail
+        key={cloth[0].id}
+        id={cloth[0].id}
+        cloth_detail_musinsa={cloth[0].cloth_detail_musinsa}
+        productNo={cloth[0].productNo}
+        brand={cloth[0].brand}
+        title={cloth[0].title}
+        clothImgSuffix={cloth[0].clothImgSuffix}
+        original_price={cloth[0].price.original_price}
+        discounted_price={cloth[0].price.discounted_price}
+        category={cloth[0].category}
+        gender={cloth[1].gender}
+        season={cloth[1].season}
+        color={cloth[1].color}
+        manufactured={cloth[1].manufactured}
+        description={cloth[1].description}
+      />
     </div>
   );
 };
