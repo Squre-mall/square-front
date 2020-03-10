@@ -4,9 +4,9 @@ import ClothsListAll from "../../Component/ClothsListAll";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from '@material-ui/core/IconButton';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from "@material-ui/core/IconButton";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 type ClothsPriceType = {
   original_price: string;
@@ -37,19 +37,18 @@ type ClothsDataType = {
   data: ClothsResponseType;
 };
 
-
 const useStyles = makeStyles({
   buttonBox: {
-    padding : 50
+    padding: 50
   },
-  buttonUp :{
-    float : "right",
-    paddingRight : 200,
-    paddingBottom : 50
-    },
-  buttonDown:{
-    float : "left",
-    paddingBottom : 50
+  buttonUp: {
+    float: "right",
+    paddingRight: 200,
+    paddingBottom: 50
+  },
+  buttonDown: {
+    float: "left",
+    paddingBottom: 50
   }
 });
 
@@ -58,8 +57,9 @@ const ClothsContainer = () => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [page,setPage] = useState(1);
-  const [next,setNext] = useState();
+  const [count, setCount] = useState();
+  const [page, setPage] = useState(1);
+  const [next, setNext] = useState();
   const [prev, setPrev] = useState();
   const classes = useStyles();
 
@@ -76,6 +76,7 @@ const ClothsContainer = () => {
         setCloths(response.data.results);
         setNext(response.data.next);
         setPrev(response.data.previous);
+        setCount(response.data.count);
       } catch (e) {
         setError(e);
       }
@@ -86,28 +87,40 @@ const ClothsContainer = () => {
 
   useEffect(() => {
     console.log(cloths);
-  },[cloths]);
-
+  }, [cloths]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;
   if (!cloths) return null;
   return (
     <div className="cloths-list">
-      <ClothsListAll cloths={cloths} title="All" />
-      <div className = {classes.buttonBox}>
-      {prev === null ? " " : (<div className = {classes.buttonDown} >
-          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page-1)} >
-            <ArrowBackIosIcon />
-          </IconButton>
-        </div>)
-        }
-        {next === null ? " " : (
-        <div className = {classes.buttonUp}>
-          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page+1)} >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        </div>
+      <ClothsListAll cloths={cloths} title="All" count={count} />
+      <div className={classes.buttonBox}>
+        {prev === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonDown}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page - 1)}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+          </div>
+        )}
+        {next === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonUp}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page + 1)}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </div>
         )}
       </div>
     </div>

@@ -75,7 +75,7 @@ const DetailContainer = ({ id }) => {
         });
 
         const respone_detail: DetailResponseType = await axios.get(
-          `http://squaremall.pythonanywhere.com/cloth/detail/${id}`
+          `https://squaremall.pythonanywhere.com/cloth/detail/${id}`
         );
 
         setCloth(response_cloth.data.results);

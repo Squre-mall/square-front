@@ -23,6 +23,7 @@ type ClothsType = {
 type ClothsProps = {
   title: string;
   cloths: ClothsType[];
+  count: number;
 };
 
 const useStyles = makeStyles({
@@ -42,7 +43,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsListAll = ({ cloths, title }: ClothsProps) => {
+const ClothsListAll = ({ cloths, title, count }: ClothsProps) => {
   const classes = useStyles();
 
   console.log({ cloths });
@@ -52,7 +53,7 @@ const ClothsListAll = ({ cloths, title }: ClothsProps) => {
         <Typography variant="h4" className={classes.title}>
           {title}
         </Typography>
-        <Box className={classes.listCount}>({cloths.length})</Box>
+        <Box className={classes.listCount}> ({count})</Box>
       </Box>
       <Box className={classes.itemBox}>
         {cloths.map(
