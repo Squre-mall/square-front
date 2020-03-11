@@ -3,28 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ClothsItem from "../ClothsItem";
-
-type ClothsPriceType = {
-  original_price: string;
-  discounted_price: string;
-};
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  price: ClothsPriceType;
-  category: string;
-};
-
-type ClothsProps = {
-  title: string;
-  cloths: ClothsType[];
-  count: number;
-};
+import { ClothsAllProps } from "../../Types/ClothsProps";
+import { ClothsAllType } from "../../Types/ClothsTypes";
 
 const useStyles = makeStyles({
   itemBox: {
@@ -43,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsListAll = ({ cloths, title, count }: ClothsProps) => {
+const ClothsListAll = ({ cloths, title, count }: ClothsAllProps) => {
   const classes = useStyles();
 
   console.log({ cloths });
@@ -51,7 +31,7 @@ const ClothsListAll = ({ cloths, title, count }: ClothsProps) => {
     <div className="clothslist-all">
       <Box className={classes.titleBox}>
         <Typography variant="h4" className={classes.title}>
-          {title}
+          {title.toUpperCase()}
         </Typography>
         <Box className={classes.listCount}> ({count})</Box>
       </Box>
@@ -66,7 +46,7 @@ const ClothsListAll = ({ cloths, title, count }: ClothsProps) => {
             clothImgSuffix,
             price,
             category
-          }: ClothsType) => (
+          }: ClothsAllType) => (
             <ClothsItem
               key={id}
               id={id}

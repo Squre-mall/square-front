@@ -7,35 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-
-type ClothsPriceType = {
-  original_price: string;
-  discounted_price: string;
-};
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  price: ClothsPriceType;
-  category: string;
-  created: string;
-  modified: string;
-};
-
-type ClothsResponseType = {
-  count: number;
-  next: string;
-  previous: string;
-  results: ClothsType[];
-};
-
-type ClothsDataType = {
-  data: ClothsResponseType;
-};
+import { ClothsDataType } from "../../Types/ContainerTypes";
 
 const useStyles = makeStyles({
   buttonBox: {
@@ -57,10 +29,10 @@ const ClothsContainer = () => {
   const [cloths, setCloths] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [next, setNext] = useState();
-  const [prev, setPrev] = useState();
+  const [next, setNext] = useState("");
+  const [prev, setPrev] = useState("");
   const classes = useStyles();
 
   useEffect(() => {

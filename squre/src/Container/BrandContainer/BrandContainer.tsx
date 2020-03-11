@@ -5,51 +5,23 @@ import ClothsBrand from "../../Component/ClothsBrand";
 import SearchError from "../../Component/SearchError";
 import ClothsError from "../../Component/ClothsError";
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from '@material-ui/core/IconButton';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-
-type ClothsPriceType = {
-  original_price: string;
-  discounted_price: string;
-};
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  price: ClothsPriceType;
-  category: string;
-  created: string;
-  modified: string;
-};
-
-type ClothsResponseType = {
-  count: number;
-  next: string;
-  previous: string;
-  results: ClothsType[];
-};
-
-type ClothsDataType = {
-  data: ClothsResponseType;
-};
+import IconButton from "@material-ui/core/IconButton";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { ClothsDataType } from "../../Types/ContainerTypes";
 
 const useStyles = makeStyles({
   buttonBox: {
-    padding : 50
+    padding: 50
   },
-  buttonUp :{
-    float : "right",
-    paddingRight : 200,
-    paddingBottom : 50
-    },
-  buttonDown:{
-    float : "left",
-    paddingBottom : 50
+  buttonUp: {
+    float: "right",
+    paddingRight: 200,
+    paddingBottom: 50
+  },
+  buttonDown: {
+    float: "left",
+    paddingBottom: 50
   }
 });
 
@@ -58,10 +30,9 @@ const BrandContainer = ({ brand }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const classes = useStyles();
-  const [next,setNext] = useState();
+  const [next, setNext] = useState();
   const [prev, setPrev] = useState();
   const [page, setPage] = useState(1);
-
 
   const detailAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
 
@@ -73,7 +44,7 @@ const BrandContainer = ({ brand }) => {
         setLoading(true);
 
         const response: ClothsDataType = await axios.get(detailAPI, {
-          params: { brand: brand, page : page}
+          params: { brand: brand, page: page }
         });
         setCloths(response.data.results);
         setNext(response.data.next);
@@ -84,7 +55,7 @@ const BrandContainer = ({ brand }) => {
       setLoading(false);
     };
     fetchClothsDetail();
-  }, [brand,page]);
+  }, [brand, page]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Brand Search" />;
@@ -94,19 +65,32 @@ const BrandContainer = ({ brand }) => {
   return (
     <div className="cloths-brand">
       {cloths.length === 0 ? <SearchError /> : <ClothsBrand cloths={cloths} />}
-      <div className = {classes.buttonBox}>
-        {prev === null ? " " : (<div className = {classes.buttonDown} >
-          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page-1)} >
-            <ArrowBackIosIcon />
-          </IconButton>
-        </div>)
-        }
-        {next === null ? " " : (
-        <div className = {classes.buttonUp}>
-          <IconButton color="secondary" aria-label="add an alarm" onClick={() => setPage(page+1)} >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        </div>
+      <div className={classes.buttonBox}>
+        {prev === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonDown}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page - 1)}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+          </div>
+        )}
+        {next === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonUp}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page + 1)}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </div>
         )}
       </div>
     </div>
