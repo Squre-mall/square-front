@@ -1,20 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import { Link } from "react-router-dom";
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  original_price: string;
-  discounted_price: string;
-  category: string;
-};
+import { ClothsItemType } from "../../Types/ClothsTypes";
 
 const useStyles = makeStyles({
   clothItem: {
@@ -42,9 +31,7 @@ const useStyles = makeStyles({
     padding: 10,
     display: "flex"
   },
-  infoBox: {
-    display: "flex"
-  },
+  infoBox: {},
   brand: {
     fontSize: 15,
     fontWeight: "bold",
@@ -57,12 +44,20 @@ const useStyles = makeStyles({
   },
   title: {
     fontSize: 13,
-    padding: 10
+    padding: "0px 10px",
+    height: 40
   },
   price: {
+    display: "flex",
     fontSize: 13,
-    padding: 10,
-    flex: 1
+    padding: 11
+  },
+  original: {
+    flex: 1,
+    textDecoration: "line-through"
+  },
+  discount: {
+    flex: 3
   }
 });
 
@@ -76,7 +71,7 @@ const ClothsItem = ({
   original_price,
   discounted_price,
   category
-}: ClothsType) => {
+}: ClothsItemType) => {
   const classes = useStyles();
   return (
     <div className="cloths-item">
@@ -99,7 +94,16 @@ const ClothsItem = ({
               </Box>
               <Box className={classes.title}>{title}</Box>
               <Box className={classes.infoBox}>
-                <Box className={classes.price}>{original_price}</Box>
+                <Box className={classes.price}>
+                  {discounted_price !== null ? (
+                    <Fragment>
+                      <Box className={classes.original}> {original_price}</Box>
+                      <Box className={classes.discount}>{discounted_price}</Box>
+                    </Fragment>
+                  ) : (
+                    original_price
+                  )}
+                </Box>
               </Box>
             </Box>
           </Paper>

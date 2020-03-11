@@ -5,27 +5,11 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { Link } from "react-router-dom";
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  original_price: string;
-  discounted_price: string;
-  category: string;
-  gender: string;
-  season: string;
-  manufactured: string;
-  color: string;
-  description: string;
-};
+import { ClothsDetailType } from "../../Types/ClothsTypes";
 
 const useStyles = makeStyles({
   root: {
-    padding: 20
+    padding: "8px 20px"
   },
   headerTitle: {
     padding: "0 20px"
@@ -45,7 +29,8 @@ const useStyles = makeStyles({
     padding: 14
   },
   contents: {
-    display: "flex"
+    display: "flex",
+    paddingBottom: 30
   },
   imgBox: {
     padding: 10,
@@ -62,16 +47,22 @@ const useStyles = makeStyles({
     height: 600
   },
   box: {
-    width: "100%"
+    width: "100%",
+    borderBottom: "1px solid #D8D8D8"
   },
   detailHeader: {
-    padding: "10px 30px",
+    padding: "0px 30px",
     width: "100%"
   },
   detailContents: {
     fontSize: 12,
-    padding: "10px 35px",
+    padding: "20px 30px",
     lineHeight: "30px"
+  },
+  tableBox: {
+    padding: "20px 0px",
+    lineHeight: "30px",
+    borderBottom: "1px solid #D8D8D8"
   },
   table: {
     display: "flex",
@@ -83,8 +74,8 @@ const useStyles = makeStyles({
     display: "flex"
   },
   price: {
-    padding: "20px 30px",
-    flex: 1,
+    padding: "35px 30px",
+    flex: 3,
     display: "flex"
   },
   original: {
@@ -92,10 +83,11 @@ const useStyles = makeStyles({
     textDecoration: "line-through"
   },
   discount: {
-    flex: 4
+    flex: 3
   },
   buy: {
-    padding: 13
+    flex: 1,
+    padding: "20px 30px"
   }
 });
 
@@ -114,7 +106,7 @@ const ClothsDetail = ({
   manufactured,
   color,
   description
-}: ClothsType) => {
+}: ClothsDetailType) => {
   const classes = useStyles();
 
   return (
@@ -152,7 +144,7 @@ const ClothsDetail = ({
           </Box>
           <Box className={classes.infoBox}>
             <Box className={classes.box}>
-              <Typography variant="h4" className={classes.detailHeader}>
+              <Typography variant="h5" className={classes.detailHeader}>
                 Detail
               </Typography>
               <Box className={classes.detailContents}>
@@ -179,8 +171,7 @@ const ClothsDetail = ({
               `}
               </Box>
             </Box>
-            <hr />
-            <Box style={{ padding: "20px 0px" }}>
+            <Box className={classes.tableBox}>
               <Box className={classes.table}>
                 <Box className={classes.tableKey}> 브랜드명 / 품번 </Box>
                 <Box className={classes.tableValue}>
@@ -204,7 +195,6 @@ const ClothsDetail = ({
                 </Box>
               </Box>
             </Box>
-            <hr />
             <Box className={classes.subBox}>
               <Box className={classes.price}>
                 {discounted_price !== null ? (

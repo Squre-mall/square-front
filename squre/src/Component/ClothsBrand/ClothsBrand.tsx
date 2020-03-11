@@ -3,28 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ClothsItem from "../ClothsItem";
-
-type ClothsPriceType = {
-  original_price: string;
-  discounted_price: string;
-};
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  price: ClothsPriceType;
-  category: string;
-  created: string;
-  modified: string;
-};
-
-type ClothsProps = {
-  cloths: ClothsType[];
-};
+import { ClothsBrandType } from "../../Types/ClothsTypes";
+import { ClothsBrandProps } from "../../Types/ClothsProps";
 
 const useStyles = makeStyles({
   itemBox: {
@@ -43,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsBrand = ({ cloths }: ClothsProps) => {
+const ClothsBrand = ({ cloths }: ClothsBrandProps) => {
   const classes = useStyles();
 
   return (
@@ -65,7 +45,7 @@ const ClothsBrand = ({ cloths }: ClothsProps) => {
             clothImgSuffix,
             price,
             category
-          }: ClothsType) => (
+          }: ClothsBrandType) => (
             <ClothsItem
               key={id}
               id={id}

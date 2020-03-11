@@ -34,12 +34,22 @@ const Header = () => {
           <SerchInput />
         </Box>
         <Box className={classes.button}>
-          <Button variant="outlined" size="medium" disableElevation>
+          <Button
+            variant="outlined"
+            size="medium"
+            disableElevation
+            onClick={() => alert("개발중입니다..")}
+          >
             LOG IN
           </Button>
         </Box>
         <Box className={classes.button}>
-          <Button variant="outlined" size="medium" disableElevation>
+          <Button
+            variant="outlined"
+            size="medium"
+            disableElevation
+            onClick={() => alert("개발중입니다..")}
+          >
             JOIN US
           </Button>
         </Box>

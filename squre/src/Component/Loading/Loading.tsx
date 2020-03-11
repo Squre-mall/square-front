@@ -4,7 +4,9 @@ import loading from "./img/loading.gif";
 
 const useStyles = makeStyles({
   loading: {
-    padding: "0 400px"
+    left: "50 %",
+    top: "50 %",
+    marginLeft: "350px"
   }
 });
 

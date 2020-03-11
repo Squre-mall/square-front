@@ -3,58 +3,7 @@ import axios from "axios";
 import ClothsDetail from "../../Component/ClothsDetail";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
-
-type ClothsPriceType = {
-  original_price: string;
-  discounted_price: string;
-};
-
-type ClothsType = {
-  id: number;
-  cloth_detail_musinsa: number;
-  productNo: string;
-  brand: string;
-  title: string;
-  clothImgSuffix: string;
-  price: ClothsPriceType;
-  category: string;
-  created: string;
-  modified: string;
-};
-
-type ClothsResponseType = {
-  count: number;
-  next: string;
-  previous: string;
-  results: ClothsType[];
-};
-
-type ClothsDataType = {
-  data: ClothsResponseType;
-};
-
-type DetailType = {
-  cloth: number;
-  description: string;
-  season: string;
-  gender: string;
-  monthlyPopularity: string;
-  detailImageUrlList: string;
-  color: string;
-  importation: string;
-  manufacturingYM: string;
-  material: string;
-  sizeNweight: string;
-  manufacturer: string;
-  manufactured: string;
-  asdirector: string;
-  precautions: string;
-  warrantyBasis: string;
-};
-
-type DetailResponseType = {
-  data: DetailType[];
-};
+import { ClothsDataType, DetailResponseType } from "../../Types/ContainerTypes";
 
 const DetailContainer = ({ id }) => {
   const [cloth, setCloth] = useState();

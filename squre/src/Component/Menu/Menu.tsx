@@ -87,7 +87,7 @@ const Menu = () => {
         </Link>
         <Link to={`/square-front/category/pants`} className={classes.menuItem}>
           <Typography className={classes.titleMenu} variant="h3">
-            Bottom
+            Pants
           </Typography>
         </Link>
         <hr />
