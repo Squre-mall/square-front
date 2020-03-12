@@ -3,7 +3,10 @@ import axios from "axios";
 import ClothsDetail from "../../Component/ClothsDetail";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
-import { ClothsDataType, DetailResponseType } from "../../Types/ContainerTypes";
+import {
+  ClothsDataType_detail,
+  DetailResponseType
+} from "../../Types/ContainerTypes";
 
 const DetailContainer = ({ id }) => {
   const [cloth, setCloth] = useState();
@@ -15,13 +18,15 @@ const DetailContainer = ({ id }) => {
   useEffect(() => {
     const fetchClothsDetail = async () => {
       try {
-        setCloth(null);
         setError(null);
         setLoading(true);
 
-        const response_cloth: ClothsDataType = await axios.get(clothAPI, {
-          params: { id: id }
-        });
+        const response_cloth: ClothsDataType_detail = await axios.get(
+          clothAPI,
+          {
+            params: { id: id }
+          }
+        );
 
         const respone_detail: DetailResponseType = await axios.get(
           `https://squaremall.pythonanywhere.com/cloth/detail/${id}`

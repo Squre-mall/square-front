@@ -17,11 +17,22 @@ type ClothsResponseType = {
   count: number;
   next: string;
   previous: string;
-  results: ClothsType[];
+  results: never;
+};
+
+type ClothsResponseType_detail = {
+  count: number;
+  next: string;
+  previous: string;
+  results: ClothsType;
 };
 
 export type ClothsDataType = {
   data: ClothsResponseType;
+};
+
+export type ClothsDataType_detail = {
+  data: ClothsResponseType_detail;
 };
 
 export type DetailType = {
@@ -44,5 +55,5 @@ export type DetailType = {
 };
 
 export type DetailResponseType = {
-  data: DetailType[];
+  data: DetailType;
 };
