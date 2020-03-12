@@ -2,21 +2,20 @@
 
 ![square-icon](./image/square-icon.png)
 
-### Front - end Stack
+## 👓 overview
 
-- [x] Typescript
-- [x] React.JS
-- [x] Redux.JS
+![200303](./image/200303.gif)
 
-### Design
+## ⚙ Stack
 
-- [x] Material-ui
+- Typescript
+- React.JS
 
-### How to use
+## 🖼 Design
+
+- Material-ui
+
+## 🛒 Install
 
 - `yarn install`
 - `yarn start`
-
-### Progress
-
-![200303](./image/200303.gif)

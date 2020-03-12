@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 const ClothsContainer = () => {
   const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
-  const [cloths, setCloths] = useState();
+  const [cloths, setCloths] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [count, setCount] = useState(0);
@@ -57,15 +57,13 @@ const ClothsContainer = () => {
     fetchCloths();
   }, [page]);
 
-  useEffect(() => {
-    console.log(cloths);
-  }, [cloths]);
-
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;
   if (!cloths) return null;
+
   return (
     <div className="cloths-list">
+      {console.log(cloths)}
       <ClothsListAll cloths={cloths} title="All" count={count} />
       <div className={classes.buttonBox}>
         {prev === null ? (
