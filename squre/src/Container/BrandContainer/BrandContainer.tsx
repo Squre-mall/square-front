@@ -99,7 +99,6 @@ const BrandContainer = ({ brand }) => {
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Brand Search" />;
   if (!cloths) return null;
-  console.log(cloths);
 
   return (
     <div className="cloths-brand">
