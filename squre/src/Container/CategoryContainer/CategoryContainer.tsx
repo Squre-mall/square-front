@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     paddingBottom: 50
   }
 });
+
 const CategoryContainer = ({ category }) => {
   const [cloths, setCloths] = useState();
   const [count, setCount] = useState(0);
