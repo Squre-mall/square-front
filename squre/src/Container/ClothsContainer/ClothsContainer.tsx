@@ -30,19 +30,28 @@ function reducer(state, action) {
       return {
         loading: true,
         data: null,
-        error: null
+        error: null,
+        next: null,
+        prev: null,
+        count: 0
       };
     case "SUCCESS":
       return {
         loading: false,
         data: action.data,
-        error: null
+        error: null,
+        next: action.next,
+        prev: action.prev,
+        count: action.count
       };
     case "ERROR":
       return {
         loading: false,
         data: null,
-        error: action.error
+        error: action.error,
+        next: null,
+        prev: null,
+        count: 0
       };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -50,7 +59,6 @@ function reducer(state, action) {
 }
 
 const ClothsContainer = () => {
-  const [count, setCount] = useState(0);
   const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
   const classes = useStyles();
   const [page, setPage] = useState(1);
@@ -58,7 +66,10 @@ const ClothsContainer = () => {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
-    error: null
+    error: null,
+    next: null,
+    prev: null,
+    count: 0
   });
 
   useEffect(() => {
@@ -70,9 +81,11 @@ const ClothsContainer = () => {
         });
         dispatch({
           type: "SUCCESS",
-          data: response.data.results
+          data: response.data.results,
+          count: response.data.count,
+          next: response.data.next,
+          prev: response.data.previous
         });
-        setCount(response.data.count);
       } catch (e) {
         dispatch({ type: "ERROR", error: e });
       }
@@ -81,7 +94,7 @@ const ClothsContainer = () => {
     fetchCloths();
   }, [page]);
 
-  const { loading, data: cloths, error } = state;
+  const { loading, data: cloths, error, count, next, prev } = state;
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;
@@ -91,24 +104,32 @@ const ClothsContainer = () => {
     <div className="cloths-list">
       <ClothsListAll cloths={cloths} title="All" count={count} />
       <div className={classes.buttonBox}>
-        <div className={classes.buttonDown}>
-          <IconButton
-            color="secondary"
-            aria-label="add an alarm"
-            onClick={() => setPage(page - 1)}
-          >
-            <ArrowBackIosIcon />
-          </IconButton>
-        </div>
-        <div className={classes.buttonUp}>
-          <IconButton
-            color="secondary"
-            aria-label="add an alarm"
-            onClick={() => setPage(page + 1)}
-          >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        </div>
+        {prev === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonDown}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page - 1)}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+          </div>
+        )}
+        {next === null ? (
+          " "
+        ) : (
+          <div className={classes.buttonUp}>
+            <IconButton
+              color="secondary"
+              aria-label="add an alarm"
+              onClick={() => setPage(page + 1)}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </div>
+        )}
       </div>
     </div>
   );

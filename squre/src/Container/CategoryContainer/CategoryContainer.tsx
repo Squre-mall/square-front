@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import axios from "axios";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
@@ -24,36 +24,77 @@ const useStyles = makeStyles({
   }
 });
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "LOADING":
+      return {
+        loading: true,
+        data: null,
+        error: null,
+        next: null,
+        prev: null,
+        count: 0
+      };
+    case "SUCCESS":
+      return {
+        loading: false,
+        data: action.data,
+        error: null,
+        next: action.next,
+        prev: action.prev,
+        count: action.count
+      };
+    case "ERROR":
+      return {
+        loading: false,
+        data: null,
+        error: action.error,
+        next: null,
+        prev: null,
+        count: 0
+      };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+}
+
 const CategoryContainer = ({ category }) => {
-  const [cloths, setCloths] = useState();
-  const [count, setCount] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
-  const [next, setNext] = useState();
-  const [prev, setPrev] = useState();
   const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
   const classes = useStyles();
+  const [page, setPage] = useState(1);
+
+  const [state, dispatch] = useReducer(reducer, {
+    loading: false,
+    data: null,
+    error: null,
+    next: null,
+    prev: null,
+    count: 0
+  });
 
   useEffect(() => {
     const fetchCloths = async () => {
+      dispatch({ type: "LOADING" });
+
       try {
-        setError(null);
-        setLoading(true);
         const response: ClothsDataType = await axios.get(clothsAPI, {
           params: { category: category, page: page }
         });
-        setCloths(response.data.results);
-        setNext(response.data.next);
-        setPrev(response.data.previous);
-        setCount(response.data.count);
+        dispatch({
+          type: "SUCCESS",
+          data: response.data.results,
+          count: response.data.count,
+          next: response.data.next,
+          prev: response.data.previous
+        });
       } catch (e) {
-        setError(e);
+        dispatch({ type: "ERROR", error: e });
       }
-      setLoading(false);
     };
     fetchCloths();
   }, [category, page]);
+
+  const { loading, data: cloths, error, count, next, prev } = state;
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const ClothsBrand = ({ cloths }: ClothsBrandProps) => {
+const ClothsBrand = ({ cloths, count }: ClothsBrandProps) => {
   const classes = useStyles();
 
   return (
@@ -32,7 +32,7 @@ const ClothsBrand = ({ cloths }: ClothsBrandProps) => {
         <Typography variant="h4" className={classes.title}>
           {cloths[0].brand}
         </Typography>
-        <Box className={classes.listCount}>({cloths.length})</Box>
+        <Box className={classes.listCount}>({count})</Box>
       </Box>
       <Box className={classes.itemBox}>
         {cloths.map(
