@@ -45,7 +45,8 @@ const useStyles = makeStyles({
   title: {
     fontSize: 13,
     padding: "0px 10px",
-    height: 40
+    height: 40,
+    lineHeight: "20px"
   },
   price: {
     display: "flex",

@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     paddingBottom: 30
   },
   imgBox: {
-    padding: 10,
+    padding: 20,
     width: 500,
     height: 600
   },

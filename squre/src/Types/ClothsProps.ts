@@ -2,6 +2,7 @@ import { ClothsBrandType, ClothsAllType } from "./ClothsTypes";
 
 export type ClothsBrandProps = {
   cloths: ClothsBrandType[];
+  count: number;
 };
 
 export type ClothsAllProps = {

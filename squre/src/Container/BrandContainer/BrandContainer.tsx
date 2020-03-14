@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import axios from "axios";
 import Loading from "../../Component/Loading";
 import ClothsBrand from "../../Component/ClothsBrand";
@@ -25,46 +25,88 @@ const useStyles = makeStyles({
   }
 });
 
-const BrandContainer = ({ brand }) => {
-  const [cloths, setCloths] = useState();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const classes = useStyles();
-  const [next, setNext] = useState();
-  const [prev, setPrev] = useState();
-  const [page, setPage] = useState(1);
+function reducer(state, action) {
+  switch (action.type) {
+    case "LOADING":
+      return {
+        loading: true,
+        data: null,
+        error: null,
+        next: null,
+        prev: null,
+        count: 0
+      };
+    case "SUCCESS":
+      return {
+        loading: false,
+        data: action.data,
+        error: null,
+        next: action.next,
+        prev: action.prev,
+        count: action.count
+      };
+    case "ERROR":
+      return {
+        loading: false,
+        data: null,
+        error: action.error,
+        next: null,
+        prev: null,
+        count: 0
+      };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+}
 
-  const detailAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
+const BrandContainer = ({ brand }) => {
+  const classes = useStyles();
+  const [page, setPage] = useState(1);
+  const brandAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
+
+  const [state, dispatch] = useReducer(reducer, {
+    loading: false,
+    data: null,
+    error: null,
+    next: null,
+    prev: null,
+    count: 0
+  });
 
   useEffect(() => {
-    const fetchClothsDetail = async () => {
+    const fetchBrand = async () => {
+      dispatch({ type: "LOADING" });
       try {
-        setCloths(null);
-        setError(null);
-        setLoading(true);
-
-        const response: ClothsDataType = await axios.get(detailAPI, {
+        const response: ClothsDataType = await axios.get(brandAPI, {
           params: { brand: brand, page: page }
         });
-        setCloths(response.data.results);
-        setNext(response.data.next);
-        setPrev(response.data.previous);
+        dispatch({
+          type: "SUCCESS",
+          data: response.data.results,
+          count: response.data.count,
+          next: response.data.next,
+          prev: response.data.previous
+        });
       } catch (e) {
-        setError(e);
+        dispatch({ type: "ERROR", error: e });
       }
-      setLoading(false);
     };
-    fetchClothsDetail();
+    fetchBrand();
   }, [brand, page]);
+
+  const { loading, data: cloths, error, count, next, prev } = state;
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Brand Search" />;
   if (!cloths) return null;
-  console.log(cloths);
 
   return (
     <div className="cloths-brand">
-      {cloths.length === 0 ? <SearchError /> : <ClothsBrand cloths={cloths} />}
+      {cloths.length === 0 ? (
+        <SearchError />
+      ) : (
+        <ClothsBrand cloths={cloths} count={count} />
+      )}
       <div className={classes.buttonBox}>
         {prev === null ? (
           " "
