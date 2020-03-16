@@ -1,7 +1,12 @@
-import React from "react";
+import React, { SFC } from "react";
+import { RouteComponentProps } from "react-router";
 import DetailContainer from "../../Container/DetailContainer";
 
-const Detail = ({ match }) => {
+interface MatchParams {
+  id: string;
+}
+
+const Detail: SFC<RouteComponentProps<MatchParams>> = ({ match }) => {
   return (
     <div className="detail">
       <DetailContainer id={match.params.id} />
