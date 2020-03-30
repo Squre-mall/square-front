@@ -1,5 +1,5 @@
-import React, { useState, useReducer, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../Component/Loading";
 import ClothsBrand from "../../Component/ClothsBrand";
 import SearchError from "../../Component/SearchError";
@@ -8,7 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { ClothsDataType } from "../../Types/ContainerTypes";
+import { RootState } from "../../store/modules";
+import { getClothsBrandThunk } from "../../store/modules/thunk";
 
 const useStyles = makeStyles({
   buttonBox: {
@@ -25,80 +26,24 @@ const useStyles = makeStyles({
   }
 });
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "LOADING":
-      return {
-        loading: true,
-        data: null,
-        error: null,
-        next: null,
-        prev: null,
-        count: 0
-      };
-    case "SUCCESS":
-      return {
-        loading: false,
-        data: action.data,
-        error: null,
-        next: action.next,
-        prev: action.prev,
-        count: action.count
-      };
-    case "ERROR":
-      return {
-        loading: false,
-        data: null,
-        error: action.error,
-        next: null,
-        prev: null,
-        count: 0
-      };
-    default:
-      throw new Error(`Unhandled action type: ${action.type}`);
-  }
-}
-
 const BrandContainer = ({ brand }) => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
-  const brandAPI = "https://squaremall.pythonanywhere.com/cloth/?format=json";
+  const { data, loading, error } = useSelector(
+    (state: RootState) => state.cloths.cloths
+  );
 
-  const [state, dispatch] = useReducer(reducer, {
-    loading: false,
-    data: null,
-    error: null,
-    next: null,
-    prev: null,
-    count: 0
-  });
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchBrand = async () => {
-      dispatch({ type: "LOADING" });
-      try {
-        const response: ClothsDataType = await axios.get(brandAPI, {
-          params: { brand: brand, page: page }
-        });
-        dispatch({
-          type: "SUCCESS",
-          data: response.data.results,
-          count: response.data.count,
-          next: response.data.next,
-          prev: response.data.previous
-        });
-      } catch (e) {
-        dispatch({ type: "ERROR", error: e });
-      }
-    };
-    fetchBrand();
-  }, [brand, page]);
-
-  const { loading, data: cloths, error, count, next, prev } = state;
+    dispatch(getClothsBrandThunk(page, brand));
+  }, [dispatch, brand, page]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="Brand Search" />;
-  if (!cloths) return null;
+  if (!data) return null;
+
+  const { results: cloths, previous: prev, next, count } = data.data;
 
   return (
     <div className="cloths-brand">

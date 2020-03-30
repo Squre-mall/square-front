@@ -43,7 +43,7 @@ const ClothsContainer = () => {
   if (error) return <ClothsError text="API" />;
   if (!data) return null;
 
-  const { results: cloths, prev, next, count } = data.data;
+  const { results: cloths, previous: prev, next, count } = data.data;
   return (
     <div className="cloths-list">
       <ClothsListAll cloths={cloths} title="All" count={count} />
