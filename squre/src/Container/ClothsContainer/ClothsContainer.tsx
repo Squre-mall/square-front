@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import ClothsListAll from "../../Component/ClothsListAll";
 import Loading from "../../Component/Loading";
@@ -8,6 +9,12 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { makeStyles } from "@material-ui/core/styles";
 import { ClothsDataType } from "../../Types/ContainerTypes";
+import {
+  initStateType,
+  LOADING,
+  SUCCESS,
+  ERROR
+} from "../../store/modules/cloths";
 
 const useStyles = makeStyles({
   buttonBox: {
@@ -24,77 +31,44 @@ const useStyles = makeStyles({
   }
 });
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "LOADING":
-      return {
-        loading: true,
-        data: null,
-        error: null,
-        next: null,
-        prev: null,
-        count: 0
-      };
-    case "SUCCESS":
-      return {
-        loading: false,
-        data: action.data,
-        error: null,
-        next: action.next,
-        prev: action.prev,
-        count: action.count
-      };
-    case "ERROR":
-      return {
-        loading: false,
-        data: null,
-        error: action.error,
-        next: null,
-        prev: null,
-        count: 0
-      };
-    default:
-      throw new Error(`${action.type}`);
-  }
-}
-
 const ClothsContainer = () => {
   const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
   const classes = useStyles();
   const [page, setPage] = useState(1);
-
-  const [state, dispatch] = useReducer(reducer, {
-    loading: false,
-    data: null,
-    error: null,
-    next: null,
-    prev: null,
-    count: 0
-  });
-
+  const { loading, cloths, error, next, prev, count } = useSelector(
+    (state: initStateType) => state.cloths,
+    []
+  );
+  console.log(count);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchCloths = async () => {
-      dispatch({ type: "LOADING" });
+      dispatch({ type: LOADING });
       try {
         const response: ClothsDataType = await axios.get(clothsAPI, {
           params: { page: page }
         });
         dispatch({
-          type: "SUCCESS",
-          data: response.data.results,
-          count: response.data.count,
-          next: response.data.next,
-          prev: response.data.previous
+          type: SUCCESS,
+          payload: {
+            data: response.data.results,
+            count: response.data.count,
+            next: response.data.next,
+            prev: response.data.previous
+          }
         });
       } catch (e) {
-        dispatch({ type: "ERROR", error: e });
+        dispatch({
+          type: ERROR,
+          payload: {
+            error: e
+          }
+        });
       }
     };
 
     fetchCloths();
-  }, [page]);
-
-  const { loading, data: cloths, error, count, next, prev } = state;
+  }, [dispatch, page]);
 
   if (loading) return <Loading />;
   if (error) return <ClothsError text="API" />;

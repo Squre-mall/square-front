@@ -1,6 +1,6 @@
 import { ClothsPriceType } from "./ClothsPriceType";
 
-type ClothsType = {
+export type ClothsType = {
   id: number;
   cloth_detail_musinsa: number;
   productNo: string;
