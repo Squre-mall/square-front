@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
-import cloths from "./cloths";
+import cloths from "./reducer";
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 const rootReducer = combineReducers({
   cloths
