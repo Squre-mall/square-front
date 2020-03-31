@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b349991c26ecfdd06ecd854e14cf9e0a",
+    "revision": "b80f44e41f2a38b90773f5f99b0a4033",
     "url": "/square-front/index.html"
   },
   {
-    "revision": "146663aa893a64e9554a",
+    "revision": "885b2ea19269dbe0a753",
     "url": "/square-front/static/css/main.69eda509.chunk.css"
   },
   {
-    "revision": "40509386daa22ff29a61",
-    "url": "/square-front/static/js/2.3a919a37.chunk.js"
+    "revision": "8f8a4b4c3b0ce0bab4fa",
+    "url": "/square-front/static/js/2.05b04f4d.chunk.js"
   },
   {
-    "revision": "3adc01bea76e7956dc3633ee898f6936",
-    "url": "/square-front/static/js/2.3a919a37.chunk.js.LICENSE.txt"
+    "revision": "b315737083144f4c14b16a4a43df1485",
+    "url": "/square-front/static/js/2.05b04f4d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "146663aa893a64e9554a",
-    "url": "/square-front/static/js/main.cc6ff1b0.chunk.js"
+    "revision": "885b2ea19269dbe0a753",
+    "url": "/square-front/static/js/main.c729bccc.chunk.js"
   },
   {
     "revision": "3d384ffc9dc8ee1dbeb0",
