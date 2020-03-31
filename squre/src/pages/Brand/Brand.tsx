@@ -7,9 +7,10 @@ interface MatchParams {
 }
 
 const Brand: SFC<RouteComponentProps<MatchParams>> = ({ match }) => {
+  const brandName = match.params.brand;
   return (
     <div className="detail">
-      <BrandContainer brand={match.params.brand} />
+      <BrandContainer brand={brandName} />
     </div>
   );
 };
