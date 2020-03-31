@@ -9,8 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { RootState } from "../../store/modules";
-import { getClothsBrandThunk } from "../../store/modules/thunk";
-
+import { getClothsBrandThunk } from "../../store/modules/cloths/thunk";
 const useStyles = makeStyles({
   buttonBox: {
     padding: 50

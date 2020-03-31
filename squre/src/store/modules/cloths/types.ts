@@ -1,6 +1,6 @@
 import * as actions from "./actions";
 import { ActionType } from "typesafe-actions";
-import { ClothsDataType } from "../../Types/ContainerTypes";
+import { ClothsDataType } from "../../../Types/ContainerTypes";
 
 export type ClothsAllAction = ActionType<typeof actions>;
 

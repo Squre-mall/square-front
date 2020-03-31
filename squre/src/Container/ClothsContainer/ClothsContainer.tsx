@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { makeStyles } from "@material-ui/core/styles";
 import { RootState } from "../../store/modules";
-import { getClothsAllThunk } from "../../store/modules/thunk";
+import { getClothsAllThunk } from "../../store/modules/cloths/thunk";
 
 const useStyles = makeStyles({
   buttonBox: {

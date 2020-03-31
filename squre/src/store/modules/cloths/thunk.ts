@@ -1,11 +1,11 @@
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "./index";
+import { RootState } from "../index";
 import { ClothsAllAction } from "./types";
 import {
   getClothsAll,
   getClothsCategory,
   getClothsBrand
-} from "../../api/square";
+} from "../../../api/square";
 import { getClothsAllAsync } from "./actions";
 
 export function getClothsAllThunk(
