@@ -1,5 +1,9 @@
 import axios from "axios";
-import { ClothsDataType } from "../Types/ContainerTypes";
+import {
+  ClothsDataType,
+  ClothsDataType_detail,
+  DetailResponseType
+} from "../Types/ContainerTypes";
 
 const clothsAPI = "https://squaremall.pythonanywhere.com/cloth/";
 
@@ -31,6 +35,24 @@ export async function getClothsBrand(page: number, brand: string) {
       page: page
     }
   });
+
+  return response;
+}
+
+export async function getCltoahDetail_cloths(id: number) {
+  const response: ClothsDataType_detail = await axios.get(clothsAPI, {
+    params: {
+      id: id
+    }
+  });
+
+  return response;
+}
+
+export async function getClothsDetail_detail(id: number) {
+  const response: DetailResponseType = await axios.get(
+    `https://squaremall.pythonanywhere.com/cloth/detail/${id}`
+  );
 
   return response;
 }

@@ -57,3 +57,8 @@ export type DetailType = {
 export type DetailResponseType = {
   data: DetailType;
 };
+
+export type DetailThunkType = {
+  cloths: ClothsDataType_detail;
+  detail: DetailResponseType;
+};
