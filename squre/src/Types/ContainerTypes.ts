@@ -1,6 +1,6 @@
 import { ClothsPriceType } from "./ClothsPriceType";
 
-type ClothsType = {
+export type ClothsType = {
   id: number;
   cloth_detail_musinsa: number;
   productNo: string;
@@ -56,4 +56,9 @@ export type DetailType = {
 
 export type DetailResponseType = {
   data: DetailType;
+};
+
+export type DetailThunkType = {
+  cloths: ClothsDataType_detail;
+  detail: DetailResponseType;
 };
