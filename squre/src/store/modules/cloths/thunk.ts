@@ -8,12 +8,12 @@ import {
 } from "../../../api/square";
 import { getClothsAllAsync } from "./actions";
 
+const { request, success, failure } = getClothsAllAsync;
+
 export function getClothsAllThunk(
   page: number
 ): ThunkAction<void, RootState, null, ClothsAllAction> {
   return async dispatch => {
-    const { request, success, failure } = getClothsAllAsync;
-
     dispatch(request());
     try {
       const clothsAll = await getClothsAll(page);
@@ -29,8 +29,6 @@ export function getClothsCategoryThunk(
   category: string
 ): ThunkAction<void, RootState, null, ClothsAllAction> {
   return async dispatch => {
-    const { request, success, failure } = getClothsAllAsync;
-
     dispatch(request());
     try {
       const clothsCategory = await getClothsCategory(page, category);
@@ -46,8 +44,6 @@ export function getClothsBrandThunk(
   brand: string
 ): ThunkAction<void, RootState, null, ClothsAllAction> {
   return async dispatch => {
-    const { request, success, failure } = getClothsAllAsync;
-
     dispatch(request());
     try {
       const clothsBrand = await getClothsBrand(page, brand);
