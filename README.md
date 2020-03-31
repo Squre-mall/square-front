@@ -10,6 +10,8 @@
 
 - Typescript
 - React.JS
+- Redux.JS
+- Redux-Thunk
 
 ## 🖼 Design
 
