@@ -1,12 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, SFC } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RouteComponentProps } from "react-router";
 import ClothsDetail from "../../Component/ClothsDetail";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
 import { RootState } from "../../store/modules";
 import { getClothsDetailThunk } from "../../store/modules/detail/thunk";
+import { DetailMatchParams } from "../../Types/RouteTypes";
 
-const DetailContainer = ({ id }) => {
+const DetailContainer: SFC<RouteComponentProps<DetailMatchParams>> = ({
+  match
+}) => {
+  const id = match.params.id;
+
   const { cloths, detail, loading, error } = useSelector(
     (state: RootState) => state.detail.detail
   );

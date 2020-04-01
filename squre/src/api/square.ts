@@ -39,7 +39,7 @@ export async function getClothsBrand(page: number, brand: string) {
   return response;
 }
 
-export async function getCltoahDetail_cloths(id: number) {
+export async function getCltoahDetail_cloths(id: string) {
   const response: ClothsDataType_detail = await axios.get(clothsAPI, {
     params: {
       id: id
@@ -49,7 +49,7 @@ export async function getCltoahDetail_cloths(id: number) {
   return response;
 }
 
-export async function getClothsDetail_detail(id: number) {
+export async function getClothsDetail_detail(id: string) {
   const response: DetailResponseType = await axios.get(
     `https://squaremall.pythonanywhere.com/cloth/detail/${id}`
   );

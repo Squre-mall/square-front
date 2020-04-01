@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SFC } from "react";
+import { RouteComponentProps } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../../Component/Loading";
 import ClothsError from "../../Component/ClothsError";
@@ -9,6 +10,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { RootState } from "../../store/modules";
 import { getClothsCategoryThunk } from "../../store/modules/cloths/thunk";
+import { CategoryMatchParams } from "../../Types/RouteTypes";
 
 const useStyles = makeStyles({
   buttonBox: {
@@ -25,9 +27,12 @@ const useStyles = makeStyles({
   }
 });
 
-const CategoryContainer = ({ category }) => {
+const CategoryContainer: SFC<RouteComponentProps<CategoryMatchParams>> = ({
+  match
+}) => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
+  const category = match.params.category;
 
   const { data, loading, error } = useSelector(
     (state: RootState) => state.cloths.cloths

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SFC } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RouteComponentProps } from "react-router";
 import Loading from "../../Component/Loading";
 import ClothsBrand from "../../Component/ClothsBrand";
 import SearchError from "../../Component/SearchError";
@@ -10,6 +11,8 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { RootState } from "../../store/modules";
 import { getClothsBrandThunk } from "../../store/modules/cloths/thunk";
+import { BrandMatchParams } from "../../Types/RouteTypes";
+
 const useStyles = makeStyles({
   buttonBox: {
     padding: 50
@@ -25,9 +28,13 @@ const useStyles = makeStyles({
   }
 });
 
-const BrandContainer = ({ brand }) => {
+const BrandContainer: SFC<RouteComponentProps<BrandMatchParams>> = ({
+  match
+}) => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
+  const brand = match.params.brand;
+
   const { data, loading, error } = useSelector(
     (state: RootState) => state.cloths.cloths
   );
