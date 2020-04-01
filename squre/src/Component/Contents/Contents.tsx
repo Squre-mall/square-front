@@ -4,9 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import Notice from "../../pages/Notice";
 import Board from "../../pages/Board";
 import ClothsContainer from "../../Container/ClothsContainer";
-import Detail from "../../pages/Detail";
-import Brand from "../../pages/Brand";
-import Category from "../../pages/Category";
+import Brand from "../../Container/BrandContainer";
+import Detail from "../../Container/DetailContainer";
+import Category from "../../Container/CategoryContainer";
 
 const useStyles = makeStyles({
   contents: {

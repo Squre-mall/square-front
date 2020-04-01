@@ -8,7 +8,7 @@ import {
 import { getClothsDetailAsync } from "./actions";
 
 export function getClothsDetailThunk(
-  id: number
+  id: string
 ): ThunkAction<void, RootState, null, ClothsDetailAction> {
   return async dispatch => {
     const { request, success, failure } = getClothsDetailAsync;
